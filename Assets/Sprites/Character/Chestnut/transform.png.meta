@@ -3,56 +3,29 @@ guid: 03181035f3b4fc34eb7bd7cc4e560207
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -409440400497839121
-    second: Chestnut_0
+      213: -5384612487663699926
+    second: transform_0
   - first:
-      213: 4433844558480114861
-    second: Chestnut_1
+      213: -7135677678594204219
+    second: transform_1
   - first:
-      213: 6595631451941167119
-    second: Chestnut_2
+      213: 6269733768383659668
+    second: transform_2
   - first:
-      213: -5878849905184199604
-    second: Chestnut_3
+      213: -5204148943214433501
+    second: transform_3
   - first:
-      213: 8426158215433512339
-    second: Chestnut_4
+      213: -666561413237005732
+    second: transform_4
   - first:
-      213: 8792425218499694093
-    second: Chestnut_5
+      213: 7026601104423170366
+    second: transform_5
   - first:
-      213: 6074852106208906157
-    second: Chestnut_6
+      213: -987889600475708168
+    second: transform_6
   - first:
-      213: -6699085412800572970
-    second: Chestnut_7
-  - first:
-      213: 675796405099902213
-    second: Chestnut_8
-  - first:
-      213: -585663071407668788
-    second: Chestnut_0
-  - first:
-      213: 2710287729194559647
-    second: Chestnut_1
-  - first:
-      213: 7966370350613761391
-    second: Chestnut_2
-  - first:
-      213: -5764834020058872410
-    second: Chestnut_3
-  - first:
-      213: -7170758464476438616
-    second: Chestnut_4
-  - first:
-      213: 1526512016095759581
-    second: Chestnut_5
-  - first:
-      213: -2718933519525435985
-    second: Chestnut_6
-  - first:
-      213: 6705853406383557087
-    second: Chestnut_7
+      213: 8942562095150015305
+    second: transform_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -98,7 +71,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -137,169 +110,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Chestnut_0
+      name: transform_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5006174, y: 0.01349579}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cc18eae1a8e4fd7f0800000000000000
-      internalID: -585663071407668788
+      spriteID: a283caba8730645b0800000000000000
+      internalID: -5384612487663699926
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chestnut_1
+      name: transform_1
       rect:
         serializedVersion: 2
-        x: 800
+        x: 301
         y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5069864, y: 0.0110286595}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f98edb97450ec9520800000000000000
-      internalID: 2710287729194559647
+      spriteID: 5cd55bf25faf8fc90800000000000000
+      internalID: -7135677678594204219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chestnut_2
+      name: transform_2
       rect:
         serializedVersion: 2
-        x: 1600
+        x: 600
         y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.50349164, y: 0.017318001}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f6d898150ab3e8e60800000000000000
-      internalID: 7966370350613761391
+      spriteID: 49e77c4d4a1920750800000000000000
+      internalID: 6269733768383659668
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chestnut_3
+      name: transform_3
       rect:
         serializedVersion: 2
-        x: 2400
+        x: 900
         y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.51757854, y: 0.0126614375}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6a5cd4d80023fffa0800000000000000
-      internalID: -5764834020058872410
+      spriteID: 32baa71eb1627c7b0800000000000000
+      internalID: -5204148943214433501
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chestnut_4
+      name: transform_4
       rect:
         serializedVersion: 2
-        x: 3200
+        x: 1200
         y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.513903, y: 0.016262753}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8af91ca3b295c7c90800000000000000
-      internalID: -7170758464476438616
+      spriteID: c52a60f1de5efb6f0800000000000000
+      internalID: -666561413237005732
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chestnut_5
+      name: transform_5
       rect:
         serializedVersion: 2
-        x: 4000
+        x: 1500
         y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5108256, y: 0.008740672}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ddcc0c047924f2510800000000000000
-      internalID: 1526512016095759581
+      spriteID: e31b287d970838160800000000000000
+      internalID: 7026601104423170366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chestnut_6
+      name: transform_6
       rect:
         serializedVersion: 2
-        x: 4800
+        x: 1800
         y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.5187569, y: 0.015731731}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa5a8c89e58644ad0800000000000000
-      internalID: -2718933519525435985
+      spriteID: 8f4c75674af4a42f0800000000000000
+      internalID: -987889600475708168
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Chestnut_7
+      name: transform_7
       rect:
         serializedVersion: 2
-        x: 5600
+        x: 2100
         y: 0
-        width: 800
-        height: 800
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 300
+        height: 300
+      alignment: 9
+      pivot: {x: 0.50188804, y: 0.01262357}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd9c55bd42aff0d50800000000000000
-      internalID: 6705853406383557087
+      spriteID: 9432a4788dc5a1c70800000000000000
+      internalID: 8942562095150015305
       vertices: []
       indices: 
       edges: []
