@@ -2870,6 +2870,7 @@ GameObject:
   - component: {fileID: 683370445}
   - component: {fileID: 683370444}
   - component: {fileID: 683370448}
+  - component: {fileID: 683370449}
   m_Layer: 0
   m_Name: Chestnut
   m_TagString: Untagged
@@ -2976,7 +2977,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 683370443}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.97, y: -3.86, z: 0}
+  m_LocalPosition: {x: 2.9, y: -3.8, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2995,9 +2996,24 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0069045424, y: 0.36144745}
-  m_Size: {x: 0.72172916, y: 0.8038695}
+  m_Offset: {x: 0.017938614, y: 0.34357285}
+  m_Size: {x: 0.7227969, y: 0.7227969}
   m_Direction: 0
+--- !u!114 &683370449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683370443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5065c98c70989494fad129bafa356335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: 0
+  speed: 3
+  transformKey: left shift
 --- !u!1 &722223268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3580,7 +3596,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264994852}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a46da3625da26f04797192dbaab4c244, type: 3}
   m_Name: 
