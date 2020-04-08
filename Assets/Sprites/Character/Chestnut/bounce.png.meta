@@ -1,13 +1,22 @@
 fileFormatVersion: 2
-guid: fdee5cf779648d74897101c6a689a80e
+guid: 6967a1ea199748b4489ff6870f12922d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1882347247711912902
-    second: run_0
+      213: -1991252620400956941
+    second: bounce_0
   - first:
-      213: 7439426567979852956
-    second: run_1
+      213: 5980057271102242301
+    second: bounce_1
+  - first:
+      213: -438252082399230896
+    second: bounce_2
+  - first:
+      213: 5876312866359526156
+    second: bounce_3
+  - first:
+      213: 196152538734449768
+    second: bounce_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -92,43 +101,106 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: run_0
+      name: bounce_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.51448643, y: 0.016152402}
+        height: 200
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3c723cb62f80e5e0800000000000000
-      internalID: -1882347247711912902
+      spriteID: 3f96fe6ba46ad54e0800000000000000
+      internalID: -1991252620400956941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: run_1
+      name: bounce_1
       rect:
         serializedVersion: 2
         x: 100
         y: 0
         width: 100
-        height: 100
-      alignment: 9
-      pivot: {x: 0.5144864, y: 0.016152402}
+        height: 200
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c94ea0d3c072e3760800000000000000
-      internalID: 7439426567979852956
+      spriteID: dfd7a84876e6df250800000000000000
+      internalID: 5980057271102242301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bounce_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 100
+        height: 200
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 054c4829d040be9f0800000000000000
+      internalID: -438252082399230896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bounce_3
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 100
+        height: 200
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c03ca6cfa6bdc8150800000000000000
+      internalID: 5876312866359526156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bounce_4
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 100
+        height: 200
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 864de09d1bfd8b200800000000000000
+      internalID: 196152538734449768
       vertices: []
       indices: 
       edges: []
