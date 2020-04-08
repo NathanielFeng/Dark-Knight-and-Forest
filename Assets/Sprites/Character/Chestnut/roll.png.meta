@@ -1,55 +1,55 @@
 fileFormatVersion: 2
-guid: 03181035f3b4fc34eb7bd7cc4e560207
+guid: 8224defe4b3799c4a86420739527c1e8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5384612487663699926
-    second: transform_0
+      213: 3083036838099942475
+    second: roll_0
   - first:
-      213: -7135677678594204219
-    second: transform_1
+      213: 7020422449882287015
+    second: roll_1
   - first:
-      213: 6269733768383659668
-    second: transform_2
+      213: 4904745224428211008
+    second: roll_2
   - first:
-      213: -5204148943214433501
-    second: transform_3
+      213: -8883362746367683638
+    second: roll_3
   - first:
-      213: -666561413237005732
-    second: transform_4
+      213: 3368263156373419212
+    second: roll_4
   - first:
-      213: 7026601104423170366
-    second: transform_5
+      213: 8601325017491710851
+    second: roll_5
   - first:
-      213: -987889600475708168
-    second: transform_6
+      213: -5248456778479591328
+    second: roll_6
   - first:
-      213: 8942562095150015305
-    second: transform_7
+      213: 3900071125500284896
+    second: roll_7
   - first:
-      213: -893292695877543110
-    second: transform_0
+      213: -2153157366920881515
+    second: roll_0
   - first:
-      213: -382865332216065917
-    second: transform_1
+      213: -8237924712448003780
+    second: roll_1
   - first:
-      213: 656634241260115816
-    second: transform_2
+      213: 5485473384008511028
+    second: roll_2
   - first:
-      213: -7981326706499054969
-    second: transform_3
+      213: -4678326724208507053
+    second: roll_3
   - first:
-      213: 8533097891540134537
-    second: transform_4
+      213: -7428215749274491593
+    second: roll_4
   - first:
-      213: 379004122295172848
-    second: transform_5
+      213: 2271694772356318692
+    second: roll_5
   - first:
-      213: 617906339022682205
-    second: transform_6
+      213: 964007051177718930
+    second: roll_6
   - first:
-      213: 3722325176289093163
-    second: transform_7
+      213: -1936567001214117791
+    second: roll_7
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -134,169 +134,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: transform_0
+      name: roll_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 300
         height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3b94c5a6036a93f0800000000000000
-      internalID: -893292695877543110
+      spriteID: 59a5a2f58c27e12e0800000000000000
+      internalID: -2153157366920881515
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: transform_1
+      name: roll_1
       rect:
         serializedVersion: 2
         x: 300
         y: 0
         width: 300
         height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3801374420acfaaf0800000000000000
-      internalID: -382865332216065917
+      spriteID: c31ff14de130dad80800000000000000
+      internalID: -8237924712448003780
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: transform_2
+      name: roll_2
       rect:
         serializedVersion: 2
         x: 600
         y: 0
         width: 300
         height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 867daa90d55dc1900800000000000000
-      internalID: 656634241260115816
+      spriteID: 43eefaebaf0502c40800000000000000
+      internalID: 5485473384008511028
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: transform_3
+      name: roll_3
       rect:
         serializedVersion: 2
         x: 900
         y: 0
         width: 300
         height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78219c6b5a1ac3190800000000000000
-      internalID: -7981326706499054969
+      spriteID: 357c55491ae331fb0800000000000000
+      internalID: -4678326724208507053
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: transform_4
+      name: roll_4
       rect:
         serializedVersion: 2
         x: 1200
         y: 0
         width: 300
         height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 98a62e27257ab6670800000000000000
-      internalID: 8533097891540134537
+      spriteID: 7352885e12da9e890800000000000000
+      internalID: -7428215749274491593
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: transform_5
+      name: roll_5
       rect:
         serializedVersion: 2
         x: 1500
         y: 0
         width: 300
         height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0feffcdbd3e724500800000000000000
-      internalID: 379004122295172848
+      spriteID: 4e509680c5ea68f10800000000000000
+      internalID: 2271694772356318692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: transform_6
+      name: roll_6
       rect:
         serializedVersion: 2
         x: 1800
         y: 0
         width: 300
         height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d58b8e1aa8e339800800000000000000
-      internalID: 617906339022682205
+      spriteID: 2947b663e47d06d00800000000000000
+      internalID: 964007051177718930
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: transform_7
+      name: roll_7
       rect:
         serializedVersion: 2
         x: 2100
         y: 0
         width: 300
         height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b26643fa60b58a330800000000000000
-      internalID: 3722325176289093163
+      spriteID: 16893e0a29eef15e0800000000000000
+      internalID: -1936567001214117791
       vertices: []
       indices: 
       edges: []
