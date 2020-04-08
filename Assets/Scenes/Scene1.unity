@@ -3147,7 +3147,7 @@ GameObject:
   - component: {fileID: 832104483}
   m_Layer: 8
   m_Name: BlockCollider
-  m_TagString: Block
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3676,7 +3676,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -3745,7 +3745,8 @@ MonoBehaviour:
     m_Bits: 256
   m_speed: 5
   m_jumpForce: 15
-  floatingWindows: 0
+  m_floatingWindow: 2
+  m_attackIdle: 0.2
 --- !u!1 &1352162917
 GameObject:
   m_ObjectHideFlags: 0
@@ -3886,7 +3887,7 @@ GameObject:
   - component: {fileID: 1385973457}
   m_Layer: 8
   m_Name: BlockCollider (1)
-  m_TagString: Block
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4377,7 +4378,7 @@ GameObject:
   - component: {fileID: 1937091254}
   m_Layer: 8
   m_Name: BlockCollider (2)
-  m_TagString: Block
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

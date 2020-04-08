@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor.Animations;
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,7 +15,7 @@ public class PlayerController : MonoBehaviour
     //Player param
     public float m_speed;
     public float m_jumpForce;
-    public float m_floatingWindows;
+    public float m_floatingWindow;
     public float m_attackIdle;
 
     //Player private info
@@ -23,6 +24,9 @@ public class PlayerController : MonoBehaviour
     private bool m_isFalling;
     private bool m_isAttacking;
     private float m_attackIdleCnt;
+    private bool m_nextJump;
+    private bool m_isOnGround;
+
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +40,7 @@ public class PlayerController : MonoBehaviour
         Movement();
         Jump();
         Attack();
+        GroundCheck();
     }
 
     //########################################
@@ -48,6 +53,7 @@ public class PlayerController : MonoBehaviour
         m_rb = GetComponent<Rigidbody2D>();
         m_anim = GetComponent<Animator>();
         m_attackIdleCnt = 0;
+        m_nextJump = true;
     }
 
     // Control player's movement
@@ -83,29 +89,41 @@ public class PlayerController : MonoBehaviour
     //Player jump
     void Jump()
     {
+        //Prevents player hold the key and jump
+        if(Input.GetButtonUp("Jump"))
+        {
+            m_nextJump = true;
+        }
         //Fall without jump
-        if (!m_isJumping && !m_isFloating && !m_coll.IsTouchingLayers(m_ground))
+        if (!m_isJumping && !m_isFloating && /*!m_coll.IsTouchingLayers(m_ground)*/!m_isOnGround)
         {
             m_isFalling = true;
             m_anim.SetBool("Falling", true);
         }
         //Jump
-        if (Input.GetButtonDown("Jump") && m_coll.IsTouchingLayers(m_ground) && !m_isAttacking) 
+        if (Input.GetButton("Jump") && /*m_coll.IsTouchingLayers(m_ground)*/m_isOnGround && !m_isAttacking 
+            && !m_isFalling && !m_isFloating && m_nextJump) 
         {
             m_rb.velocity = new Vector2(m_rb.velocity.x, m_jumpForce);
             m_anim.SetBool("Jumping", true);
             m_isJumping = true;
+            m_nextJump = false;
         }
         //Float
-        else if (m_isJumping && m_rb.velocity.y < m_floatingWindows && m_rb.velocity.y > -1.0 * m_floatingWindows)
+        else if (m_isJumping && ((m_rb.velocity.y < m_floatingWindow && m_rb.velocity.y > -1.0 * m_floatingWindow)
+            || Input.GetButtonUp("Jump")))
         {
+            if(!(m_rb.velocity.y < m_floatingWindow && m_rb.velocity.y > -1.0 * m_floatingWindow))
+            {
+                m_rb.velocity = new Vector2(m_rb.velocity.x, m_floatingWindow);
+            }
             m_isJumping = false;
             m_isFloating = true;
             m_anim.SetBool("Jumping", false);
             m_anim.SetBool("Floating", true);
         }
         //Fall
-        else if (m_isFloating && m_rb.velocity.y < -1.0 * m_floatingWindows)
+        else if (m_isFloating && m_rb.velocity.y < -1.0 * m_floatingWindow)
         {
             m_isFloating = false;
             m_isFalling = true;
@@ -113,22 +131,24 @@ public class PlayerController : MonoBehaviour
             m_anim.SetBool("Falling", true);
         }
         //On the ground
-        else if (m_isFalling && m_coll.IsTouchingLayers(m_ground))
+        else if (m_isFalling /*&& m_coll.IsTouchingLayers(m_ground) */&& m_isOnGround)
         {
             m_isFalling = false;
             m_anim.SetBool("Falling", false);
         }
     }
 
+
     //Player Attack
     void Attack()
     {
         if (m_attackIdleCnt <= 0)
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && !m_anim.GetBool("Attacking"))
             {
                 m_attackIdleCnt = m_attackIdle;
-                m_anim.SetTrigger("Attacking");
+                //m_comboCnt = m_comboWindow;
+                m_anim.SetBool("Attacking", true);
                 m_isAttacking = true;
                 //Stop moving while attack
                 if (!m_isJumping && !m_isFloating && !m_isFalling)
@@ -140,6 +160,54 @@ public class PlayerController : MonoBehaviour
         else
         {
             m_attackIdleCnt -= Time.deltaTime;
+            if (Input.GetButtonDown("Fire1"))
+            {
+                m_anim.SetTrigger("Attacking2");
+                m_isAttacking = true;
+            }
         }
     }
+
+    void AttackFinished()
+    {
+        m_anim.SetBool("Attacking", false);
+        m_isAttacking = false;
+    }
+
+    void AttackFinished2()
+    {
+        m_isAttacking = false;
+    }
+
+    //Use raycast to check if player is on the ground
+    void GroundCheck()
+    {
+        Vector2 pos = transform.position;
+        BoxCollider2D boxColl = (BoxCollider2D)m_coll;
+        Vector2 rightOffset = new Vector2(boxColl.size.x / 2, -boxColl.size.y / 2);
+        Vector2 leftOffset = new Vector2(-boxColl.size.x / 2, -boxColl.size.y / 2);
+        float distance = 0.2f;
+
+        RaycastHit2D rightFoot = Physics2D.Raycast(pos + rightOffset + m_coll.offset, Vector2.down, distance, m_ground);
+        RaycastHit2D leftFoot = Physics2D.Raycast(pos + leftOffset + m_coll.offset, Vector2.down, distance, m_ground);
+
+        //Debug
+        //Color c = Color.red;
+        //if (rightFoot || leftFoot)
+        //{
+        //    c = Color.green;
+        //}
+        //Debug.DrawRay(pos + rightOffset + m_coll.offset, Vector2.down, c, distance);
+        //Debug.DrawRay(pos + leftOffset + m_coll.offset, Vector2.down, c, distance);
+
+        if (rightFoot || leftFoot)
+        {
+            m_isOnGround = true;
+        }
+        else
+        {
+            m_isOnGround = false;
+        }
+    }
+
 }
