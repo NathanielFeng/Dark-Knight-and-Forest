@@ -1,55 +1,22 @@
 fileFormatVersion: 2
-guid: 03181035f3b4fc34eb7bd7cc4e560207
+guid: 6967a1ea199748b4489ff6870f12922d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5384612487663699926
-    second: transform_0
+      213: -1991252620400956941
+    second: bounce_0
   - first:
-      213: -7135677678594204219
-    second: transform_1
+      213: 5980057271102242301
+    second: bounce_1
   - first:
-      213: 6269733768383659668
-    second: transform_2
+      213: -438252082399230896
+    second: bounce_2
   - first:
-      213: -5204148943214433501
-    second: transform_3
+      213: 5876312866359526156
+    second: bounce_3
   - first:
-      213: -666561413237005732
-    second: transform_4
-  - first:
-      213: 7026601104423170366
-    second: transform_5
-  - first:
-      213: -987889600475708168
-    second: transform_6
-  - first:
-      213: 8942562095150015305
-    second: transform_7
-  - first:
-      213: -893292695877543110
-    second: transform_0
-  - first:
-      213: -382865332216065917
-    second: transform_1
-  - first:
-      213: 656634241260115816
-    second: transform_2
-  - first:
-      213: -7981326706499054969
-    second: transform_3
-  - first:
-      213: 8533097891540134537
-    second: transform_4
-  - first:
-      213: 379004122295172848
-    second: transform_5
-  - first:
-      213: 617906339022682205
-    second: transform_6
-  - first:
-      213: 3722325176289093163
-    second: transform_7
+      213: 196152538734449768
+    second: bounce_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -134,13 +101,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: transform_0
+      name: bounce_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 300
-        height: 300
+        width: 100
+        height: 200
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -148,20 +115,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3b94c5a6036a93f0800000000000000
-      internalID: -893292695877543110
+      spriteID: 3f96fe6ba46ad54e0800000000000000
+      internalID: -1991252620400956941
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: transform_1
+      name: bounce_1
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 0
+        width: 100
+        height: 200
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dfd7a84876e6df250800000000000000
+      internalID: 5980057271102242301
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bounce_2
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 100
+        height: 200
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 054c4829d040be9f0800000000000000
+      internalID: -438252082399230896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bounce_3
       rect:
         serializedVersion: 2
         x: 300
         y: 0
-        width: 300
-        height: 300
+        width: 100
+        height: 200
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -169,20 +178,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3801374420acfaaf0800000000000000
-      internalID: -382865332216065917
+      spriteID: c03ca6cfa6bdc8150800000000000000
+      internalID: 5876312866359526156
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: transform_2
+      name: bounce_4
       rect:
         serializedVersion: 2
-        x: 600
+        x: 400
         y: 0
-        width: 300
-        height: 300
+        width: 100
+        height: 200
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -190,113 +199,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 867daa90d55dc1900800000000000000
-      internalID: 656634241260115816
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: transform_3
-      rect:
-        serializedVersion: 2
-        x: 900
-        y: 0
-        width: 300
-        height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 78219c6b5a1ac3190800000000000000
-      internalID: -7981326706499054969
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: transform_4
-      rect:
-        serializedVersion: 2
-        x: 1200
-        y: 0
-        width: 300
-        height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 98a62e27257ab6670800000000000000
-      internalID: 8533097891540134537
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: transform_5
-      rect:
-        serializedVersion: 2
-        x: 1500
-        y: 0
-        width: 300
-        height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0feffcdbd3e724500800000000000000
-      internalID: 379004122295172848
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: transform_6
-      rect:
-        serializedVersion: 2
-        x: 1800
-        y: 0
-        width: 300
-        height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d58b8e1aa8e339800800000000000000
-      internalID: 617906339022682205
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: transform_7
-      rect:
-        serializedVersion: 2
-        x: 2100
-        y: 0
-        width: 300
-        height: 300
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b26643fa60b58a330800000000000000
-      internalID: 3722325176289093163
+      spriteID: 864de09d1bfd8b200800000000000000
+      internalID: 196152538734449768
       vertices: []
       indices: 
       edges: []
