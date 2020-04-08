@@ -3142,7 +3142,7 @@ GameObject:
   - component: {fileID: 832104485}
   - component: {fileID: 832104484}
   - component: {fileID: 832104483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BlockCollider
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -3361,7 +3361,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1091095259}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49eba6727a7406047a4a4b69e1ba09aa, type: 3}
   m_Name: 
@@ -3548,7 +3548,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1173062376}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ColliderGroup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3696,7 +3696,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.37, y: 1.8}
+    oldSize: {x: 1.98, y: 1.8}
     newSize: {x: 1.37, y: 1.8}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3736,10 +3736,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a46da3625da26f04797192dbaab4c244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_rb: {fileID: 1264994855}
   m_coll: {fileID: 1264994856}
-  m_anim: {fileID: 1264994857}
-  speed: 5
+  m_ground:
+    serializedVersion: 2
+    m_Bits: 256
+  m_speed: 5
+  m_jumpForce: 15
 --- !u!1 &1352162917
 GameObject:
   m_ObjectHideFlags: 0
@@ -3878,7 +3880,7 @@ GameObject:
   - component: {fileID: 1385973459}
   - component: {fileID: 1385973458}
   - component: {fileID: 1385973457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BlockCollider (1)
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -4311,7 +4313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1895764126}
   - component: {fileID: 1895764127}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BoxCollider
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4369,7 +4371,7 @@ GameObject:
   - component: {fileID: 1937091256}
   - component: {fileID: 1937091255}
   - component: {fileID: 1937091254}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BlockCollider (2)
   m_TagString: Block
   m_Icon: {fileID: 0}
