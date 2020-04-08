@@ -8,7 +8,6 @@ public class ChestnutController : MonoBehaviour
     private Animator anim;
 
     public float input;
-    private float faceDirection;
     public float speed = 3.0f;
     public string transformKey;
 
@@ -26,18 +25,21 @@ public class ChestnutController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        input = Input.GetAxis("Horizontal");
-        faceDirection = Input.GetAxisRaw("Horizontal");
-
+        input = Input.GetAxisRaw("Horizontal");
+        //跑动
+        if (input != 0)
+            anim.SetBool("isRunning", true);
+        else
+            anim.SetBool("isRunning", false);
         //变身
-        if(Input.GetKeyDown(transformKey))
-            anim.SetBool("transform", true);
+        if (Input.GetKeyDown(transformKey))
+            anim.SetTrigger("isTransform");
     }
 
     void FixedUpdate()
     {
         rigid.velocity = new Vector2(input * speed, rigid.velocity.y);
-        if(faceDirection != 0)
-            transform.localScale = new Vector3(faceDirection, 1, 1);
+        if (input != 0)
+            transform.localScale = new Vector3(input, 1, 1);
     }
 }
