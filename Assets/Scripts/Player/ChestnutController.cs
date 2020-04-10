@@ -47,6 +47,8 @@ public class ChestnutController : MonoBehaviour
             //改变Circle Collider碰撞体的大小
             circleCollider.offset = new Vector2(0.01f, 1.0f);
             circleCollider.radius = 1.0f;
+            //改变重力大小
+            rigid.gravityScale = 3.0f;
         }     
  
     }

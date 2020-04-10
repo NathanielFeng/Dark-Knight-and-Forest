@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Animations;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,8 +12,10 @@ public class PlayerController : MonoBehaviour
     private Animator m_anim;
     public Collider2D m_coll;
     public LayerMask m_ground;
+    public Slider m_slider;
 
     //Player param
+    public float m_health;  //生命值0~100之间
     public float m_speed;
     public float m_jumpForce;
     public float m_floatingWindow;
@@ -41,6 +44,8 @@ public class PlayerController : MonoBehaviour
         Jump();
         Attack();
         GroundCheck();
+        //更新生命值
+        m_slider.value = m_health;
     }
 
     //########################################
