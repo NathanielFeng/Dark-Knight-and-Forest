@@ -5,15 +5,10 @@ using UnityEngine;
 public class tooth : MonoBehaviour
 {
     public float speed;
-
-    private float lifeTime = 2.0f;
-
-    private Rigidbody2D rigid;
-
-    private void Awake()
-    {
-        rigid = GetComponent<Rigidbody2D>();
-    }
+    private float lifeTime = 5.0f;
+    public float damage;
+    //public float distance;
+    //public LayerMask target;
 
     // Start is called before the first frame update
     private void Start()
@@ -25,6 +20,27 @@ public class tooth : MonoBehaviour
     private void Update()
     {
         transform.position -= transform.up * speed * Time.deltaTime;
+        //射线法
+        //但是由于当初角度没算对，手动加了92度，导致判断有误差
+        /*RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, -transform.up, distance, target);
+        if (hitInfo.collider != null)
+        {
+            if (hitInfo.collider.CompareTag("Player"))
+                hitInfo.collider.GetComponent<PlayerController>().m_health -= 10;
+            destroyTooth();
+        }*/
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision != null)
+        {
+            if(collision.gameObject.tag == "Player")
+            {
+                collision.gameObject.GetComponent<PlayerController>().takeDamage(damage);
+            }
+            destroyTooth();
+        }
     }
 
     void destroyTooth()

@@ -4038,9 +4038,9 @@ GameObject:
   - component: {fileID: 1264994855}
   - component: {fileID: 1264994857}
   - component: {fileID: 1264994858}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Black Knight
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5231,7 +5231,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1980929032}
   - component: {fileID: 1980929031}
-  - component: {fileID: 1980929030}
   - component: {fileID: 1980929034}
   m_Layer: 0
   m_Name: Bat
@@ -5240,22 +5239,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &1980929030
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1980929029}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.06, y: -0.03}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!95 &1980929031
 Animator:
   serializedVersion: 3
@@ -5309,7 +5292,7 @@ MonoBehaviour:
   attackRange: 10
   minDistance: 5
   flySpeed: 0.5
-  timeBtwShot: 0.5
+  timeBtwShot: 1
   player: {fileID: 1264994854}
   tooth: {fileID: 5999032281888077098, guid: 44a4c8f97233d8248a2b3bd5643dc1af, type: 3}
   shotPoint: {fileID: 11428100}

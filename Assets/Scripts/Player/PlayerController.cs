@@ -215,4 +215,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void takeDamage(float damage)
+    {
+        if (m_health > 0) 
+            m_health -= damage;
+    }
+
 }

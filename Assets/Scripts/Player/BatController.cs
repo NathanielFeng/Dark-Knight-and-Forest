@@ -43,6 +43,7 @@ public class BatController : MonoBehaviour
             {
                 Vector3 difference = player.transform.position - transform.position;
                 float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + 92.0f;   //搞不好了，只能手动加个92度
+                rotZ += Random.Range(-10.0f, 10.0f);
                 Instantiate(tooth, shotPoint.position, Quaternion.Euler(0f,0f,rotZ));
                 timeCounterBtwShot = timeBtwShot;
             }
