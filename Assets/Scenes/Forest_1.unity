@@ -7918,7 +7918,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileSpriteIndex: 11
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -9541,16 +9541,16 @@ Tilemap:
     m_Data: {fileID: 21300140, guid: af8183249dd18734a9415f11af1f8471, type: 3}
   - m_RefCount: 143
     m_Data: {fileID: 21300180, guid: af8183249dd18734a9415f11af1f8471, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300312, guid: af8183249dd18734a9415f11af1f8471, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 21300260, guid: af8183249dd18734a9415f11af1f8471, type: 3}
   - m_RefCount: 8
     m_Data: {fileID: 21300214, guid: af8183249dd18734a9415f11af1f8471, type: 3}
   - m_RefCount: 124
     m_Data: {fileID: 21300266, guid: af8183249dd18734a9415f11af1f8471, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300312, guid: af8183249dd18734a9415f11af1f8471, type: 3}
   - m_RefCount: 12
     m_Data: {fileID: 21300134, guid: af8183249dd18734a9415f11af1f8471, type: 3}
   m_TileMatrixArray:
@@ -9639,8 +9639,10 @@ MonoBehaviour:
   m_slider: {fileID: 0}
   m_health: 0
   m_speed: 5
-  m_jumpForce: 15
-  m_floatingWindow: 2
+  m_jumpForce: 18
+  m_dashForce: 30
+  m_dashDistance: 5.5
+  m_floatingWindow: 3
   m_attackIdle: 0.2
 --- !u!95 &1423765713
 Animator:
@@ -9676,7 +9678,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1

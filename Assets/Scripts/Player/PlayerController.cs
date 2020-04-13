@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float m_health;  //生命值0~100之间
     public float m_speed;
     public float m_jumpForce;
+    public float m_dashForce;
+    public float m_dashDistance;
     public float m_floatingWindow;
     public float m_attackIdle;
 
@@ -26,6 +28,12 @@ public class PlayerController : MonoBehaviour
     private bool m_isFloating;
     private bool m_isFalling;
     private bool m_isAttacking;
+    private bool m_isDashing;
+    private float m_velocityRecY;
+    private float m_velocityRecX;
+    private float m_posRecY;
+    private float m_posRecX;
+    private float m_gravityRec;
     private float m_attackIdleCnt;
     private bool m_nextJump;
     private bool m_isOnGround;
@@ -44,6 +52,7 @@ public class PlayerController : MonoBehaviour
         Jump();
         Attack();
         GroundCheck();
+        Dash();
         //更新生命值
         m_slider.value = m_health;
     }
@@ -84,7 +93,7 @@ public class PlayerController : MonoBehaviour
                 m_anim.SetBool("Turning", true);
             }
         }
-        if (!m_isAttacking || (m_isAttacking && (m_isFalling || m_isFloating || m_isJumping))) 
+        if (!m_isDashing && (!m_isAttacking || (m_isAttacking && (m_isFalling || m_isFloating || m_isJumping)))) 
         {
             m_rb.velocity = new Vector2(horizontalMove * m_speed, m_rb.velocity.y);
             m_anim.SetFloat("HorizontalSpeed", Mathf.Abs(faceDirection));
@@ -140,6 +149,12 @@ public class PlayerController : MonoBehaviour
         {
             m_isFalling = false;
             m_anim.SetBool("Falling", false);
+            //Reset Attack
+            if (m_anim.GetBool("AttackingDown"))
+            {
+                m_anim.SetBool("AttackingDown", false);
+                m_isAttacking = false;
+            }
         }
     }
 
@@ -152,8 +167,29 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Fire1") && !m_anim.GetBool("Attacking"))
             {
                 m_attackIdleCnt = m_attackIdle;
-                //m_comboCnt = m_comboWindow;
-                m_anim.SetBool("Attacking", true);
+                if (Input.GetButton("Vertical"))
+                {
+                    if (Input.GetAxisRaw("Vertical") < 0)
+                    {
+                        if (m_isJumping || m_isFalling || m_isFloating)
+                        {
+                            m_anim.SetBool("AttackingDown", true);
+                        }
+                        else
+                        {
+                            //Not allow AttackingDown while on the ground
+                            m_anim.SetBool("Attacking", true);
+                        }
+                    }
+                    else
+                    {
+                        m_anim.SetBool("AttackingUp", true);
+                    }
+                }
+                else
+                {
+                    m_anim.SetBool("Attacking", true);
+                }
                 m_isAttacking = true;
                 //Stop moving while attack
                 if (!m_isJumping && !m_isFloating && !m_isFalling)
@@ -179,9 +215,61 @@ public class PlayerController : MonoBehaviour
         m_isAttacking = false;
     }
 
+    void AttackUpFinished()
+    {
+        m_anim.SetBool("AttackingUp", false);
+        m_isAttacking = false;
+    }
+
+    void AttackDownFinished()
+    {
+        m_anim.SetBool("AttackingDown", false);
+        m_isAttacking = false;
+    }
+
     void AttackFinished2()
     {
         m_isAttacking = false;
+    }
+
+    void Dash()
+    {
+        if (Input.GetButtonDown("Dash"))
+        {
+            int directionSymbol = 0;
+            float direction = transform.localScale.x;
+            if(transform.localScale.x > 0)
+            {
+                directionSymbol = 1;
+            }
+            else
+            {
+                directionSymbol = -1;
+            }
+            m_anim.SetBool("Dash", true);
+            if (!m_isDashing)//Prevents variables being updated twice
+            {
+                m_velocityRecY = m_rb.velocity.y;
+                m_velocityRecX = m_rb.velocity.x;
+                m_gravityRec = m_rb.gravityScale;
+                m_posRecX = transform.position.x;
+            }
+            m_isDashing = true;
+            m_rb.gravityScale = 0;//No gravity effect while dashing
+            m_rb.velocity = new Vector2(directionSymbol * m_dashForce, 0);
+        }
+        if (m_isDashing && (Mathf.Abs(transform.position.x - m_posRecX) > m_dashDistance))
+        {
+            DashFinished();
+        }
+    }
+
+    void DashFinished()
+    {
+        m_anim.SetBool("Dash", false);
+        m_isDashing = false;
+        m_rb.velocity = new Vector2(m_velocityRecX, m_velocityRecY);
+        m_rb.gravityScale = m_gravityRec;
     }
 
     //Use raycast to check if player is on the ground
@@ -215,10 +303,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void WallCheck()
+    {
+
+    }
+
     public void takeDamage(float damage)
     {
         if (m_health > 0) 
             m_health -= damage;
     }
+
 
 }
