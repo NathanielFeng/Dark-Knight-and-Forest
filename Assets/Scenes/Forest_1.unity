@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 65072970}
   m_Layer: 8
   m_Name: Collider8
-  m_TagString: Untagged
+  m_TagString: Stone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -211,6 +211,7 @@ Transform:
   - {fileID: 1576749637}
   - {fileID: 2059949506}
   - {fileID: 799107576}
+  - {fileID: 988326820}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -226,7 +227,7 @@ GameObject:
   - component: {fileID: 201226155}
   m_Layer: 8
   m_Name: Collider2
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -283,7 +284,7 @@ GameObject:
   - component: {fileID: 264463354}
   m_Layer: 8
   m_Name: Collider3
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -459,7 +460,7 @@ GameObject:
   - component: {fileID: 281347506}
   m_Layer: 8
   m_Name: Collider5
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -938,7 +939,7 @@ GameObject:
   - component: {fileID: 598003069}
   m_Layer: 8
   m_Name: Collider9
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1201,7 +1202,7 @@ GameObject:
   - component: {fileID: 789835033}
   m_Layer: 8
   m_Name: Collider1
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1492,7 +1493,7 @@ GameObject:
   - component: {fileID: 867715097}
   m_Layer: 8
   m_Name: Collider4
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1537,6 +1538,36 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.703442, y: 1.6526976}
   m_EdgeRadius: 0
+--- !u!1 &988326819
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 988326820}
+  m_Layer: 11
+  m_Name: Grass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &988326820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 988326819}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 170212763}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1034872594
 GameObject:
   m_ObjectHideFlags: 0
@@ -10482,6 +10513,7 @@ GameObject:
   - component: {fileID: 1423765714}
   - component: {fileID: 1423765713}
   - component: {fileID: 1423765712}
+  - component: {fileID: 1423765718}
   m_Layer: 9
   m_Name: Black Knight
   m_TagString: Untagged
@@ -10513,6 +10545,10 @@ MonoBehaviour:
   m_dashDistance: 5.5
   m_floatingWindow: 3
   m_attackIdle: 0.2
+  m_soundFootstepsGrass: {fileID: 8300000, guid: 6be3557ef127a5c4485d640ff03ed448,
+    type: 3}
+  m_soundFootstepsStone: {fileID: 8300000, guid: 6cb68b7d8b4f3754c96d33793d8223f6,
+    type: 3}
 --- !u!95 &1423765713
 Animator:
   serializedVersion: 3
@@ -10566,7 +10602,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02972883, y: -0.046866655}
+  m_Offset: {x: -0.0042865574, y: -0.03923464}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -10577,7 +10613,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.76952815, y: 1.6529231}
+  m_Size: {x: 0.7186436, y: 1.6376591}
   m_EdgeRadius: 0
 --- !u!212 &1423765716
 SpriteRenderer:
@@ -10643,6 +10679,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1423765718
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423765711}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1449510388
 GameObject:
   m_ObjectHideFlags: 0
@@ -11117,7 +11249,7 @@ GameObject:
   - component: {fileID: 1649674976}
   m_Layer: 8
   m_Name: Collider10
-  m_TagString: Untagged
+  m_TagString: Grass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11354,7 +11486,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2059949505}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 54.35097, y: 1.3861718, z: 104.845055}
+  m_LocalPosition: {x: 44.35097, y: 1.3861718, z: 104.845055}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 170212763}
@@ -11372,10 +11504,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87eaa71ba1f4205469d1d02144411ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveRate: 0.02
+  moveRate: 0.2
   cam: {fileID: 266089398}
-  boundRight: 100
-  boundleft: -100
+  boundRight: 1000
+  boundleft: -1000
 --- !u!212 &2059949508
 SpriteRenderer:
   m_ObjectHideFlags: 0
