@@ -6,7 +6,7 @@ public class FireController : MonoBehaviour
 {
     private Animator anim;
     private float burstTime = 5.0f;
-    private float dormantTime = 1.0f;
+    private float dormantTime = 2.0f;
     private float timeCounter;
 
     void Awake()
