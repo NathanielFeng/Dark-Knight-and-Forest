@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     public Collider2D m_coll;
     public LayerMask m_ground;
     public Slider m_slider;
+    private AttackController m_atkEffect;
+    private AudioSource audioSourse;
 
     //Player param
     public float m_health;  //生命值0~100之间
@@ -21,12 +23,14 @@ public class PlayerController : MonoBehaviour
     public float m_dashForce;
     public float m_dashDistance;
     public float m_floatingWindow;
-    public float m_attackIdle;
+    public float m_attackInterval;
 
     [Space]
     //Sound
     public AudioClip m_soundFootstepsGrass;
     public AudioClip m_soundFootstepsStone;
+    public AudioClip m_soundAtk1;
+    public AudioClip m_soundAtk2;
 
     //Player private info
     private bool m_isJumping;
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour
     private bool m_isOnGround;
     private bool m_nextDash;
     private string m_groundTag;
+    private float[] m_soundInterval = new float[10];
 
 
     // Start is called before the first frame update
@@ -56,6 +61,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        AnimationCheck();
         Movement();
         Jump();
         Attack();
@@ -78,6 +84,12 @@ public class PlayerController : MonoBehaviour
         m_attackTimeCnt = 0;
         m_nextJump = true;
         m_nextDash = true;
+        for (int i = 0; i < m_soundInterval.Length; i++) 
+        {
+            m_soundInterval[i] = 0f;
+        }
+        m_atkEffect = GameObject.Find("Attack Zone").GetComponent<AttackController>();
+        audioSourse = GetComponent<AudioSource>();
     }
 
     // Control player's movement
@@ -87,12 +99,16 @@ public class PlayerController : MonoBehaviour
         float horizontalMove = Input.GetAxis("Horizontal");
         float faceDirection = Input.GetAxisRaw("Horizontal");
 
-        //转身判定
+        //转身判定(攻击期间无法转向)
         if (faceDirection != 0)
         {
             float formerDirection = transform.localScale.x;
             //设置新的方向
-            transform.localScale = new Vector3(faceDirection, 1, 1);
+            AnimatorStateInfo info = m_anim.GetCurrentAnimatorStateInfo(0);
+            if (!info.IsName("Attacking1") && !info.IsName("Attacking2") && !info.IsName("AttackUp") && !info.IsName("AttackDown"))
+            {
+                transform.localScale = new Vector3(faceDirection, 1, 1);
+            }
             //比较新方向和旧方向判断玩家是否转向
             if (formerDirection == transform.localScale.x)
             {
@@ -186,7 +202,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("Fire1") && !m_anim.GetBool("Attacking"))
             {
-                m_attackTimeCnt = m_attackIdle;
+                m_attackTimeCnt = m_attackInterval;
                 if (Input.GetButton("Vertical"))
                 {
                     if (Input.GetAxisRaw("Vertical") < 0)
@@ -222,12 +238,30 @@ public class PlayerController : MonoBehaviour
         {
             m_attackTimeCnt -= Time.deltaTime;
             //Combo Attack
-            if (Input.GetButtonDown("Fire1"))
+            if (!m_isAttacking && !m_isFalling && !m_isFloating)
             {
-                m_anim.SetTrigger("Attacking2");
-                m_isAttacking = true;
+                if (Input.GetButtonDown("Fire1") && !m_anim.GetBool("Attacking1") && m_attackTimeCnt <= m_attackInterval * 0.5f)
+                {
+                    m_anim.SetBool("Attacking2", true);
+                    m_isAttacking = true;
+                }
             }
         }
+    }
+
+    void CallAttackEffect()
+    {
+        m_atkEffect.AttackFront();
+    }
+
+    void CallAttackUpEffect()
+    {
+        m_atkEffect.AttackUp();
+    }
+
+    void CallAttackDownEffect()
+    {
+        m_atkEffect.AttackDown();
     }
 
     void AttackFinished()
@@ -250,12 +284,13 @@ public class PlayerController : MonoBehaviour
 
     void AttackFinished2()
     {
+        m_anim.SetBool("Attacking2", false);
         m_isAttacking = false;
     }
 
     void Dash()
     {
-        if (Input.GetButtonDown("Dash") && m_nextDash && m_dashTimeCnt <= 0)
+        if (Input.GetButtonDown("Dash") && m_nextDash && m_dashTimeCnt <= 0 && !m_isAttacking)
         {
             m_dashTimeCnt = 1.0f;
             m_nextDash = false;
@@ -342,24 +377,67 @@ public class PlayerController : MonoBehaviour
 
     void AudioControl()
     {
-        AudioSource source = GetComponent<AudioSource>();
-        //播放脚步声
-        if (m_isOnGround && Input.GetButton("Horizontal") && !source.isPlaying)
+        //声音间隔时间冷却
+        for (int i = 0; i < m_soundInterval.Length; i++)
+        {
+            if (m_soundInterval[i] > 0f)
+            {
+                m_soundInterval[i] -= Time.deltaTime;
+            }
+        }
+        //判断当前动画
+        AnimatorStateInfo info = m_anim.GetCurrentAnimatorStateInfo(0);
+        Vector3 CamPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        //播放脚步声--0
+        if ((info.IsName("Move") || info.IsName("Turning") || info.IsName("Rush")) && m_soundInterval[0] <= 0f) 
         {
             if (m_groundTag == "Grass")
             {
-                source.clip = m_soundFootstepsGrass;
+                audioSourse.PlayOneShot(m_soundFootstepsGrass, 1.0f);
+                m_soundInterval[0] = m_soundFootstepsGrass.length;
             }
             else if (m_groundTag == "Stone")
             {
-                source.clip = m_soundFootstepsStone;
+                audioSourse.PlayOneShot(m_soundFootstepsStone, 1.0f);
+                m_soundInterval[0] = m_soundFootstepsStone.length;
             }
-            source.loop = true;
-            source.Play(0);
         }
-        else if (!m_isOnGround || m_isAttacking || m_isDashing || Input.GetButtonUp("Horizontal"))
+        //播放攻击--1
+       if ((info.IsName("Attacking1") || info.IsName("AttackUp") || info.IsName("AttackDown")) && m_soundInterval[1] <= 0f)
+       {
+                audioSourse.PlayOneShot(m_soundAtk1, 1.0f);
+                m_soundInterval[1] = m_attackInterval;
+        }
+        //播放连击--2
+        if (info.IsName("Attacking2") && m_soundInterval[2] <= 0f)
         {
-            source.Stop();
+            audioSourse.PlayOneShot(m_soundAtk2, 1.0f);
+            m_soundInterval[2] = m_attackInterval;
+        }
+    }
+
+    //防止动画卡死
+    public void AnimationCheck()
+    {
+        AnimatorStateInfo info = m_anim.GetCurrentAnimatorStateInfo(0);
+        if(!info.IsName("Attacking1") && m_anim.GetBool("Attacking1"))
+        {
+            m_anim.SetBool("Attacking1", false);
+        }
+        if (!info.IsName("Attacking2") && m_anim.GetBool("Attacking2"))
+        {
+            m_isAttacking = false;
+            m_anim.SetBool("Attacking2", false);
+        }
+        if (!Input.GetButton("Horizontal") && (info.IsName("Move") || info.IsName("Idle")))
+        {
+            m_anim.SetFloat("HorizontalSpeed", 0f);
+            m_rb.velocity = new Vector2(0, m_rb.velocity.y);
+        }
+        if(!info.IsName("Floating") && m_anim.GetBool("Floating"))
+        {
+            m_anim.SetBool("Floating",false);
+            m_isFloating = false;
         }
     }
 
