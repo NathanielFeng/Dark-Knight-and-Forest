@@ -4199,6 +4199,8 @@ MonoBehaviour:
   m_dashDistance: 5.5
   m_floatingWindow: 2
   m_attackIdle: 0.2
+  m_soundFootstepsGrass: {fileID: 0}
+  m_soundFootstepsStone: {fileID: 0}
 --- !u!1 &1291899657
 GameObject:
   m_ObjectHideFlags: 0
