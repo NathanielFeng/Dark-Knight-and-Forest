@@ -3360,7 +3360,7 @@ CircleCollider2D:
   m_Density: 1
   m_Material: {fileID: 6200000, guid: 349a309ac57e37d45b74b4bf6dc67ae3, type: 2}
   m_IsTrigger: 0
-  m_UsedByEffector: 0
+  m_UsedByEffector: 1
   m_UsedByComposite: 0
   m_Offset: {x: 0.01, y: 0.36}
   serializedVersion: 2
@@ -4198,9 +4198,11 @@ MonoBehaviour:
   m_dashForce: 30
   m_dashDistance: 5.5
   m_floatingWindow: 2
-  m_attackIdle: 0.2
+  m_attackInterval: 0
   m_soundFootstepsGrass: {fileID: 0}
   m_soundFootstepsStone: {fileID: 0}
+  m_soundAtk1: {fileID: 0}
+  m_soundAtk2: {fileID: 0}
 --- !u!1 &1291899657
 GameObject:
   m_ObjectHideFlags: 0

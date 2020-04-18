@@ -17,13 +17,14 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioSourse;
 
     //Player param
-    public float m_health;  //生命值0~100之间
     public float m_speed;
     public float m_jumpForce;
     public float m_dashForce;
     public float m_dashDistance;
     public float m_floatingWindow;
     public float m_attackInterval;
+    public int m_health;
+    public float m_hurtInterval;
 
     [Space]
     //Sound
@@ -49,6 +50,7 @@ public class PlayerController : MonoBehaviour
     private bool m_isOnGround;
     private bool m_nextDash;
     private string m_groundTag;
+    public float m_hurtTimeCnt;
     private float[] m_soundInterval = new float[10];
 
 
@@ -68,8 +70,9 @@ public class PlayerController : MonoBehaviour
         GroundCheck();
         Dash();
         AudioControl();
+        HurtIntervalUpdate();
         //更新生命值
-        m_slider.value = m_health;
+        //m_slider.value = m_health;
     }
 
     //########################################
@@ -81,7 +84,8 @@ public class PlayerController : MonoBehaviour
     {
         m_rb = GetComponent<Rigidbody2D>();
         m_anim = GetComponent<Animator>();
-        m_attackTimeCnt = 0;
+        m_attackTimeCnt = 0f;
+        m_hurtTimeCnt = 0f;
         m_nextJump = true;
         m_nextDash = true;
         for (int i = 0; i < m_soundInterval.Length; i++) 
@@ -95,6 +99,12 @@ public class PlayerController : MonoBehaviour
     // Control player's movement
     void Movement()
     {
+        //受伤期间禁止移动
+        if(m_anim.GetCurrentAnimatorStateInfo(0).IsName("Injure"))
+        {
+            return;
+        }
+
         //Initialized
         float horizontalMove = Input.GetAxis("Horizontal");
         float faceDirection = Input.GetAxisRaw("Horizontal");
@@ -129,6 +139,12 @@ public class PlayerController : MonoBehaviour
     //Player jump
     void Jump()
     {
+        //受伤期间禁止跳跃
+        if (m_anim.GetCurrentAnimatorStateInfo(0).IsName("Injure"))
+        {
+            return;
+        }
+
         //防止按住跳跃键连跳，必须松开再按才能跳
         if (Input.GetButtonUp("Jump"))
         {
@@ -198,6 +214,12 @@ public class PlayerController : MonoBehaviour
     //Player Attack
     void Attack()
     {
+        //受伤期间禁止攻击
+        if (m_anim.GetCurrentAnimatorStateInfo(0).IsName("Injure"))
+        {
+            return;
+        }
+
         if (m_attackTimeCnt <= 0)
         {
             if (Input.GetButtonDown("Fire1") && !m_anim.GetBool("Attacking"))
@@ -290,6 +312,12 @@ public class PlayerController : MonoBehaviour
 
     void Dash()
     {
+        //受伤禁止冲刺
+        if (m_anim.GetCurrentAnimatorStateInfo(0).IsName("Injure"))
+        {
+            return;
+        }
+
         if (Input.GetButtonDown("Dash") && m_nextDash && m_dashTimeCnt <= 0 && !m_isAttacking)
         {
             m_dashTimeCnt = 1.0f;
@@ -420,7 +448,7 @@ public class PlayerController : MonoBehaviour
     public void AnimationCheck()
     {
         AnimatorStateInfo info = m_anim.GetCurrentAnimatorStateInfo(0);
-        if(!info.IsName("Attacking1") && m_anim.GetBool("Attacking1"))
+        if(!info.IsName("Attacking1") && m_anim.GetBool("Attacking"))
         {
             m_anim.SetBool("Attacking1", false);
         }
@@ -441,11 +469,62 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void takeDamage(float damage)
+
+    public void Hurt(int damage)
     {
-        if (m_health > 0) 
+        if (m_health > 0 && m_hurtTimeCnt <= 0)
+        {
+            //重置所有动画参数
+            ResetAnim();
             m_health -= damage;
+            m_anim.SetTrigger("Hurt");
+            m_hurtTimeCnt = m_hurtInterval;
+            float directionSymbol;
+            if (transform.localScale.x > 0)
+            {
+                directionSymbol = 1f;
+            }
+            else
+            {
+                directionSymbol = -1f;
+            }
+            m_rb.velocity = new Vector2(directionSymbol * 150f, 5f);
+            //if(!m_isOnGround)
+            //{
+            //    m_anim.SetBool("Falling", true);
+            //    m_isFalling = true;
+            //}
+        }
     }
 
+    public void HurtIntervalUpdate()
+    {
+        if(m_hurtTimeCnt>0)
+        {
+            m_hurtTimeCnt -= Time.deltaTime;
+        }
+    }
+
+    public void ResetAnim()
+    {
+        m_anim.SetBool("Turning", false);
+        m_anim.SetBool("Moving", false);
+        m_anim.SetBool("Idling", false);
+        m_anim.SetBool("Jumping", false);
+        m_anim.SetBool("Floating", false);
+        m_anim.SetBool("Falling", false);
+        m_anim.SetBool("Attacking", false);
+        m_anim.SetBool("Attacking2", false);
+        m_anim.SetBool("AttackingUp", false);
+        m_anim.SetBool("AttackingDown", false);
+        m_anim.SetBool("Dash", false);
+        m_anim.SetFloat("HorizontalSpeed", 0f);
+        m_anim.SetFloat("VerticalSpeed", 0f);
+        m_isAttacking = false;
+        m_isDashing = false;
+        m_isFalling = false;
+        m_isFloating = false;
+        m_isJumping = false;
+    }
 
 }

@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 6933151700196960863}
   m_Layer: 9
   m_Name: Black Knight
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -350,19 +350,21 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   m_slider: {fileID: 0}
-  m_health: 0
   m_speed: 5
   m_jumpForce: 18
   m_dashForce: 30
   m_dashDistance: 5.5
   m_floatingWindow: 3
   m_attackInterval: 0.6
+  m_health: 100
+  m_hurtInterval: 3
   m_soundFootstepsGrass: {fileID: 8300000, guid: 6be3557ef127a5c4485d640ff03ed448,
     type: 3}
   m_soundFootstepsStone: {fileID: 8300000, guid: 6cb68b7d8b4f3754c96d33793d8223f6,
     type: 3}
   m_soundAtk1: {fileID: 8300000, guid: e6d5d3ef40a3f364b9f94505aadd23d1, type: 3}
   m_soundAtk2: {fileID: 8300000, guid: 3d21048551d2dd24e8c5cc80d56de4a0, type: 3}
+  m_hurtTimeCnt: 0
 --- !u!82 &6933151700196960863
 AudioSource:
   m_ObjectHideFlags: 0

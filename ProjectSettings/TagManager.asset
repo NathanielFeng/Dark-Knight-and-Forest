@@ -8,6 +8,7 @@ TagManager:
   - Block
   - Grass
   - Stone
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Player
   - ForeGround1
   - ForeGround2
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -62,4 +63,7 @@ TagManager:
     locked: 0
   - name: foreground2
     uniqueID: 758060123
+    locked: 0
+  - name: UI
+    uniqueID: 3532498683
     locked: 0
