@@ -7,6 +7,8 @@ public class ChestnutController : Enemy
     private Rigidbody2D rigid;
     private Animator anim;
     private CircleCollider2D circleCollider;
+    //private GameObject player;
+    //public Slider bloodBar;
     public LayerMask ground;
 
     //public float jumpForce = 8.0f;
@@ -16,6 +18,7 @@ public class ChestnutController : Enemy
     public float rollingTime;
     public GameObject leftTopPoint;
     public GameObject rightButtonPoint;
+    public CircleCollider2D damageCollider;
 
     private Vector2 leftTop;
     private Vector2 rightButton;
@@ -50,11 +53,15 @@ public class ChestnutController : Enemy
         //角色获得仇恨
         if (getPlayer)
         {
-            if (playerObject.transform.position.x > transform.position.x)
-                faceDirection = 1.0f;
-            else
-                faceDirection = -1.0f;
-            transform.localScale = new Vector3(faceDirection, 1, 1);
+            //移动时不转身（防止怪物卡死在角色身边）
+            if (!anim.GetBool("isRolling") && !anim.GetBool("isBouncing"))
+            {
+                if (playerObject.transform.position.x > transform.position.x)
+                    faceDirection = 1.0f;
+                else
+                    faceDirection = -1.0f;
+                transform.localScale = new Vector3(faceDirection, 1, 1);
+            }
         }
         else
         {
@@ -106,6 +113,8 @@ public class ChestnutController : Enemy
                 //改变Circle Collider碰撞体的大小
                 circleCollider.offset = new Vector2(0.01f, 1.0f);
                 circleCollider.radius = 1.0f;
+                damageCollider.offset = new Vector2(0.01f, 1.0f);
+                damageCollider.radius = 1.0f;
                 //改变重力大小
                 rigid.gravityScale = 3.0f;
             }

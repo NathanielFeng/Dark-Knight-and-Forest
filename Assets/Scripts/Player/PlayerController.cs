@@ -50,7 +50,8 @@ public class PlayerController : MonoBehaviour
     private bool m_isOnGround;
     private bool m_nextDash;
     private string m_groundTag;
-    public float m_hurtTimeCnt;
+    private float m_hurtTimeCnt;
+    private bool m_isInjured;
     private float[] m_soundInterval = new float[10];
 
 
@@ -86,6 +87,7 @@ public class PlayerController : MonoBehaviour
         m_anim = GetComponent<Animator>();
         m_attackTimeCnt = 0f;
         m_hurtTimeCnt = 0f;
+        m_gravityRec = m_rb.gravityScale;
         m_nextJump = true;
         m_nextDash = true;
         for (int i = 0; i < m_soundInterval.Length; i++) 
@@ -100,7 +102,7 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         //受伤期间禁止移动
-        if(m_anim.GetCurrentAnimatorStateInfo(0).IsName("Injure"))
+        if(InjureCheck())
         {
             return;
         }
@@ -140,7 +142,7 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         //受伤期间禁止跳跃
-        if (m_anim.GetCurrentAnimatorStateInfo(0).IsName("Injure"))
+        if (InjureCheck())
         {
             return;
         }
@@ -215,7 +217,7 @@ public class PlayerController : MonoBehaviour
     void Attack()
     {
         //受伤期间禁止攻击
-        if (m_anim.GetCurrentAnimatorStateInfo(0).IsName("Injure"))
+        if (InjureCheck())
         {
             return;
         }
@@ -313,7 +315,7 @@ public class PlayerController : MonoBehaviour
     void Dash()
     {
         //受伤禁止冲刺
-        if (m_anim.GetCurrentAnimatorStateInfo(0).IsName("Injure"))
+        if (InjureCheck())
         {
             return;
         }
@@ -337,7 +339,6 @@ public class PlayerController : MonoBehaviour
             {
                 m_velocityRecY = m_rb.velocity.y;
                 m_velocityRecX = m_rb.velocity.x;
-                m_gravityRec = m_rb.gravityScale;
                 m_posRecX = transform.position.x;
             }
             m_isDashing = true;
@@ -457,7 +458,7 @@ public class PlayerController : MonoBehaviour
             m_isAttacking = false;
             m_anim.SetBool("Attacking2", false);
         }
-        if (!Input.GetButton("Horizontal") && (info.IsName("Move") || info.IsName("Idle")))
+        if (!Input.GetButton("Horizontal") && (info.IsName("Move") || info.IsName("Idle")) && !m_isInjured)
         {
             m_anim.SetFloat("HorizontalSpeed", 0f);
             m_rb.velocity = new Vector2(0, m_rb.velocity.y);
@@ -475,6 +476,7 @@ public class PlayerController : MonoBehaviour
         if (m_health > 0 && m_hurtTimeCnt <= 0)
         {
             //重置所有动画参数
+            m_isInjured = true;
             ResetAnim();
             m_health -= damage;
             m_anim.SetTrigger("Hurt");
@@ -488,7 +490,8 @@ public class PlayerController : MonoBehaviour
             {
                 directionSymbol = -1f;
             }
-            m_rb.velocity = new Vector2(directionSymbol * 150f, 5f);
+            m_rb.velocity = new Vector2(directionSymbol * -5f, 6f);
+            m_rb.gravityScale = m_gravityRec;//恢复重力，防止冲刺时受伤后起飞
             //if(!m_isOnGround)
             //{
             //    m_anim.SetBool("Falling", true);
@@ -525,6 +528,19 @@ public class PlayerController : MonoBehaviour
         m_isFalling = false;
         m_isFloating = false;
         m_isJumping = false;
+    }
+
+    public void InjureFinish()
+    {
+        m_isInjured = false;
+    }
+
+    //检测是否在受伤期间（受伤起跳——落地）
+    public bool InjureCheck()
+    {
+        if (m_isInjured)
+            return true;
+        return false;
     }
 
 }
