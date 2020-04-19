@@ -13,4 +13,12 @@ public class DamageZone : MonoBehaviour
             collision.GetComponent<PlayerController>().Hurt(damage);
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<PlayerController>().Hurt(damage);
+        }
+    }
 }

@@ -357,7 +357,7 @@ MonoBehaviour:
   m_floatingWindow: 3
   m_attackInterval: 0.6
   m_health: 100
-  m_hurtInterval: 3
+  m_hurtInterval: 1.5
   m_soundFootstepsGrass: {fileID: 8300000, guid: 6be3557ef127a5c4485d640ff03ed448,
     type: 3}
   m_soundFootstepsStone: {fileID: 8300000, guid: 6cb68b7d8b4f3754c96d33793d8223f6,
