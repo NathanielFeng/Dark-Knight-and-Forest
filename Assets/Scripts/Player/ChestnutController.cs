@@ -1,20 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ChestnutController : Enemy
 {
-    [Header("Components")]
     private Rigidbody2D rigid;
     private Animator anim;
     private CircleCollider2D circleCollider;
-    public GameObject player;
-    public Slider bloodBar;
     public LayerMask ground;
 
     //public float jumpForce = 8.0f;
-    
+
     public float speed = 3.0f;
     public float matureAttackDistance;
     public float rollingTime;
@@ -26,9 +22,6 @@ public class ChestnutController : Enemy
     private float faceDirection;
     private float rollingTimeCnt;
     private float nextRollingTimeCnt;
-
-    [Header("testForCode")]
-    public string hitKey;
 
     void Awake()
     {
@@ -57,7 +50,7 @@ public class ChestnutController : Enemy
         //角色获得仇恨
         if (getPlayer)
         {
-            if (playerObject.transform.position.x > transform.position.x) 
+            if (playerObject.transform.position.x > transform.position.x)
                 faceDirection = 1.0f;
             else
                 faceDirection = -1.0f;
@@ -90,7 +83,7 @@ public class ChestnutController : Enemy
             else
                 anim.SetBool("isBouncing", true);
         }
-        else if (rollingTimeCnt <= 0 && nextRollingTimeCnt > 0) 
+        else if (rollingTimeCnt <= 0 && nextRollingTimeCnt > 0)
         {
             rigid.velocity = new Vector2(0, rigid.velocity.y);
             nextRollingTimeCnt -= Time.deltaTime;
@@ -122,7 +115,7 @@ public class ChestnutController : Enemy
     //进入成熟距离
     bool MatureAttackCheck()
     {
-        if(Mathf.Abs(playerObject.transform.position.x - transform.position.x) < matureAttackDistance)
+        if (Mathf.Abs(playerObject.transform.position.x - transform.position.x) < matureAttackDistance)
         {
             return true;
         }
