@@ -6,7 +6,7 @@ public class tooth : MonoBehaviour
 {
     public float speed;
     private float lifeTime = 5.0f;
-    public float damage;
+    public int damage;
     //public float distance;
     //public LayerMask target;
 
@@ -37,7 +37,7 @@ public class tooth : MonoBehaviour
         {
             if(collision.gameObject.tag == "Player")
             {
-                collision.gameObject.GetComponent<PlayerController>().takeDamage(damage);
+                collision.gameObject.GetComponent<PlayerController>().Hurt(damage);
             }
             destroyTooth();
         }
