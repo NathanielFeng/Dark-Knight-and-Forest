@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
         AudioControl();
         HurtIntervalUpdate();
         //更新生命值
-        //m_slider.value = m_health;
+        m_slider.value = m_health;
     }
 
 

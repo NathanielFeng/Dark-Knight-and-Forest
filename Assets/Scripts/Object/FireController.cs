@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class FireController : MonoBehaviour
 {
+    public GameObject player;
     private Animator anim;
     private float burstTime = 5.0f;
-    private float dormantTime = 2.0f;
+    private float dormantTime = 3.0f;
     private float timeCounter;
 
     void Awake()
@@ -29,4 +30,11 @@ public class FireController : MonoBehaviour
             anim.SetBool("BurstORFade", !status);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+            player.GetComponent<PlayerController>().m_health -= 10;
+    }
+
 }
