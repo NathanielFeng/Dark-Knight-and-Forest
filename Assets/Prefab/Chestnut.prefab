@@ -228,7 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5065c98c70989494fad129bafa356335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 30
+  health: 50
   hurtInterval: 0.04
   ground:
     serializedVersion: 2

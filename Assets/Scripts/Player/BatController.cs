@@ -25,7 +25,6 @@ public class BatController : Enemy
 
     void Start()
     {
-        health = 100;
     }
 
     void Update()

@@ -30,12 +30,15 @@ public class Enemy : MonoBehaviour
     {
         isHurt = true;
         hurtTimeCnt = hurtInterval;
-        HurtBehavior();
         health -= damage;
         if(health <= 0)
         {
             DeadBehavior();
             isDead = true;
+        }
+        else
+        {
+            HurtBehavior();
         }
     }
 

@@ -12,12 +12,13 @@ public class Flame : MonoBehaviour
     void Start()
     {
         Invoke("destroyFlame", lifeTime);
+        transform.localScale = new Vector3(1, -1f, 1);
     }
 
     void Update()
     {
-        transform.position += Vector3.down * speed * Time.deltaTime;
-
+        transform.position -= transform.up * speed * Time.deltaTime;
+        //transform.position += Vector3.down * speed * Time.deltaTime;
         //RaycastHit2D hitInfo = Physics2D.Raycast(transform.position, Vector3.down, distance, layer);
         //if (hitInfo.collider != null)
         //{

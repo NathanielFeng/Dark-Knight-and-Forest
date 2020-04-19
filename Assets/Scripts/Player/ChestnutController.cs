@@ -151,6 +151,12 @@ public class ChestnutController : Enemy
     //解决成熟后图片和碰撞体不一致的问题
     void UpdateCollider()
     {
+        //未转变完成
+        if(!transformFinished)
+        {
+            return;
+        }
+
         float offX = 0;
         float offY = 0;
         float radius = 0;
@@ -194,7 +200,7 @@ public class ChestnutController : Enemy
             anim.SetBool("isBouncing", false);
         }
         rollingTimeCnt = 0f;
-        nextRollingTimeCnt = rollingTime;
+        nextRollingTimeCnt = 0.1f * rollingTime;
         if (playerObject == null)
         {
             rigid.velocity = new Vector2(faceDirection * -25f, rigid.velocity.y);

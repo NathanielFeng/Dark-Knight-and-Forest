@@ -21,10 +21,15 @@ public class BossController : Enemy
     [Header("Attributes")]
     public float speed;
     private float faceDirection;
-    private float attackTime = 0.2f;
+    public float attackTime;
+    public int phaseTime;//修改成按次数计算攻击方式
+    public float nextMoveTime;
     private float attackTimeCnt;
-    private float phaseTime = 20.0f;
-    private float phaseTimeCnt;
+    private int phaseTimeCnt;
+    private float nextMoveTimeCnt;
+    private float maxHealth;
+    private bool nextPhase;
+    private Vector3 difference;
 
     void Awake()
     {
@@ -35,87 +40,189 @@ public class BossController : Enemy
 
     void Start()
     {
-        Mature();
-        health = 100;
+        nextPhase = false;
+        maxHealth = health;
         attackTimeCnt = attackTime;
         phaseTimeCnt = phaseTime;
+        nextMoveTimeCnt = 0;
+        rigid.gravityScale = 3.0f;
     }
 
     void Update()
     {
-        bloodBar.value = health;
-        if (health > 0)
-        {
-            if (phaseTimeCnt > 10)
-            {
-                phaseTimeCnt -= Time.deltaTime;
-                Attack1();
-            }
-            else if (phaseTimeCnt > 0)
-            {
-                phaseTimeCnt -= Time.deltaTime;
-                Attack2();
-            }
-            else
-                phaseTimeCnt = phaseTime;
-        }
-        else
-            anim.SetBool("isDead", true);
+        StateCheck();
+        HurtIntervalTimmer();
     }
 
+    void StateCheck()
+    {
+        //bloodBar.value = health;
+        //受伤状态不攻击
+        if (isHurt)
+        {
+            return;
+        }
+        if(isDead)
+        {
+            rigid.velocity = new Vector2(0f, rigid.velocity.y);
+            return;
+        }
+
+        //二阶段
+        if (!nextPhase && health <= 0.3 * maxHealth) 
+        {
+            phaseTime -= 2;
+            speed = 2.0f * speed;
+            nextMoveTime *= 0.75f;
+            nextPhase = true;
+        }
+        if (health > 0)
+        {
+            if(Mathf.Abs(transform.position.x - player.transform.position.x) > 10f)
+            {
+                Attack2();
+            }
+            else if (phaseTimeCnt > 0 && attackTimeCnt < 0)
+            {
+                int RandKey = Random.Range(0, 2);
+                if (RandKey == 0)
+                    Attack1();
+                else
+                    Attack3();
+            }
+            else if (phaseTimeCnt <= 0 && nextMoveTimeCnt < 0)
+            {
+                Attack2();
+            }
+        }
+        if (nextMoveTimeCnt > 0)
+        {
+            nextMoveTimeCnt -= Time.deltaTime;
+        }
+        if (attackTimeCnt > 0) 
+        {
+            attackTimeCnt -= Time.deltaTime;
+        }
+    }
 
     void Attack1()
     {
-        rigid.gravityScale = 3.0f;
-        if (player.transform.position.x - transform.position.x > 5.0f)
-            faceDirection = 1.0f;
-        if (transform.position.x - player.transform.position.x > 5.0f) 
-            faceDirection = -1.0f;
-        transform.localScale = new Vector3(faceDirection, 1, 1);
-        rigid.velocity = new Vector2(faceDirection * speed, rigid.velocity.y);
-        anim.SetBool("isRolling", true);
+        //两次移动之间的间隔
+        if (nextMoveTimeCnt <= 0)
+        {
+            //进行一个完整的移动时不允许转身
+            if (!anim.GetBool("isMoving") && !(Mathf.Abs(rigid.velocity.x) > 0.1f))
+            {
+                if (player.transform.position.x - transform.position.x > 1.0f)
+                    faceDirection = 1.0f;
+                if (transform.position.x - player.transform.position.x > 1.0f)
+                    faceDirection = -1.0f;
+                transform.localScale = new Vector3(faceDirection, 1, 1);
+            }
+            rigid.velocity = new Vector2(faceDirection * speed, 13f);
+            anim.SetBool("isMoving", true);
+            nextMoveTimeCnt = nextMoveTime;
+            phaseTimeCnt -= 1;
+        }
     }
 
     void Attack2()
     {
-        rigid.gravityScale = 0.0f;
-        transform.position = new Vector2(transform.position.x, player.transform.position.y + 2.5f);
-        if (player.transform.position.x - transform.position.x > 5.0f)
-            faceDirection = 1.0f;
-        if (transform.position.x - player.transform.position.x > 5.0f)
-            faceDirection = -1.0f;
-        transform.localScale = new Vector3(faceDirection, 1, 1);
-
-        rigid.velocity = new Vector2(faceDirection * speed, 0);
-        anim.SetBool("isRolling", true);
-
-        //每隔一段时间攻击
+        rigid.gravityScale = 3.0f;
         if (attackTimeCnt <= 0)
-        {
-            Instantiate(flame, shotPoint.position, Quaternion.Euler(0f, 0f, -170f));
+        {            
+            //transform.position = new Vector2(transform.position.x, player.transform.position.y + 2.5f);
+            //确定方向
+            if (player.transform.position.x - transform.position.x > 1.0f)
+                faceDirection = 1.0f;
+            if (transform.position.x - player.transform.position.x > 1.0f)
+                faceDirection = -1.0f;
+            transform.localScale = new Vector3(faceDirection, 1, 1);
+            //跳起来吐火
+            rigid.velocity = new Vector2(faceDirection + 1f, 17f);
+            anim.SetBool("isFiring", true);
             attackTimeCnt = attackTime;
+            phaseTimeCnt = phaseTime;
         }
-        else
-            attackTimeCnt -= Time.deltaTime;
-
     }
 
-
-    void Mature()
+    void Attack3()
     {
-        if (!anim.GetBool("isMature"))
+        if (nextMoveTimeCnt <= 0)
         {
-            anim.SetBool("isMature", true);
-            speed *= 2;
-            //改变Circle Collider碰撞体的大小
-            circleCollider.offset = new Vector2(0.01f, 1.0f);
-            circleCollider.radius = 1.0f;
-            //改变重力大小
-            rigid.gravityScale = 3.0f;
-
-            //改变damageTrigger碰撞体的大小
-            damageTrigger.GetComponent<CircleCollider2D>().offset = new Vector2(0.01f, 1.0f);
-            damageTrigger.GetComponent<CircleCollider2D>().radius = 1.0f;
+            //进行一个完整的冲刺时不允许转身
+            if (!anim.GetBool("isDashing") && !(Mathf.Abs(rigid.velocity.x) > 0.1f))
+            {
+                if (player.transform.position.x - transform.position.x > 1.0f)
+                    faceDirection = 1.0f;
+                if (transform.position.x - player.transform.position.x > 1.0f)
+                    faceDirection = -1.0f;
+                transform.localScale = new Vector3(faceDirection, 1, 1);
+            }
+            rigid.velocity = new Vector2(faceDirection * speed * 1.5f, 0f);
+            anim.SetBool("isDashing", true);
+            nextMoveTimeCnt = nextMoveTime;
+            phaseTimeCnt -= 1;
         }
+    }
+
+    void GetPlayerPos()
+    {
+        difference = player.transform.position - transform.position;
+    }
+
+    void MovingFinished()
+    {
+        anim.SetBool("isMoving", false);
+        rigid.velocity = new Vector2(0, rigid.velocity.y);
+    }
+
+    void DashingFinished()
+    {
+        anim.SetBool("isDashing", false);
+        rigid.velocity = new Vector2(0, rigid.velocity.y);
+    }
+
+    void FiringFinished()
+    {
+        anim.SetBool("isFiring", false);
+        rigid.velocity = new Vector2(0, rigid.velocity.y);
+    }
+
+    void Fire()
+    {
+        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg + 92.0f;
+        rotZ += Random.Range(-10.0f, 10.0f);
+        if (health > maxHealth * 0.5f)
+        {
+            Instantiate(flame, shotPoint.position, Quaternion.Euler(0f, 0f, rotZ));//-170f
+        }
+        else
+        {
+            float axis = -10f;
+            for (int i = 0; i < 3; i++)
+            {
+                Instantiate(flame, shotPoint.position, Quaternion.Euler(0f, 0f, rotZ + axis));
+                axis += 10f;
+            }
+        }
+    }
+
+    override protected void HurtBehavior()
+    {
+        anim.SetBool("isFiring", false);
+        anim.SetBool("isDashing", false);
+        anim.SetBool("isMoving", false);
+        anim.SetTrigger("isInjured");
+        //rigid.velocity = new Vector2(player.transform.localScale.x * 5f, rigid.velocity.y + 1f);
+    }
+
+    override protected void DeadBehavior()
+    {
+        anim.SetBool("isFiring", false);
+        anim.SetBool("isDashing", false);
+        anim.SetBool("isMoving", false);
+        anim.SetBool("isDead", true);
+        Destroy(damageTrigger);
     }
 }

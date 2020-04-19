@@ -166,18 +166,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec470fcee4caffb45ad16f754194605b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  hurtInterval: 0
+  health: 40
+  hurtInterval: 0.5
   attackRange: 10
   minDistance: 5
   flySpeed: 0.5
-  timeBtwShot: 1
+  timeBtwShot: 3
   player: {fileID: 0}
   tooth: {fileID: 5999032281888077098, guid: 44a4c8f97233d8248a2b3bd5643dc1af, type: 3}
   shotPoint: {fileID: 7865562502943184367}
-  ground:
-    serializedVersion: 2
-    m_Bits: 3328
 --- !u!1 &7865562502943184360
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +215,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7865562502991730163}
   - component: {fileID: 7865562502991730162}
+  - component: {fileID: 3861703938961560281}
+  - component: {fileID: 7303076799926535189}
   m_Layer: 12
   m_Name: body
   m_TagString: Untagged
@@ -290,6 +289,35 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &3861703938961560281
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865562502991730172}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.052531242, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5308962
+--- !u!114 &7303076799926535189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7865562502991730172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 697fdffbe3d038d45b01a76e3e26cf33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!1 &7865562503931539828
 GameObject:
   m_ObjectHideFlags: 0
