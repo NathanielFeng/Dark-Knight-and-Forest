@@ -14,7 +14,9 @@ public class PlayerController : MonoBehaviour
     public LayerMask m_ground;
     public Slider m_slider;
     private AttackController m_atkEffect;
-    private AudioSource audioSourse;
+    private AudioSource m_audioSourse;
+    public SpriteRenderer m_renderer;
+
 
     //Player param
     public float m_speed;
@@ -76,6 +78,7 @@ public class PlayerController : MonoBehaviour
         //m_slider.value = m_health;
     }
 
+
     //########################################
     //#            PLAYER FUNCTION           #
     //########################################
@@ -95,7 +98,7 @@ public class PlayerController : MonoBehaviour
             m_soundInterval[i] = 0f;
         }
         m_atkEffect = GameObject.Find("Attack Zone").GetComponent<AttackController>();
-        audioSourse = GetComponent<AudioSource>();
+        m_audioSourse = GetComponent<AudioSource>();
     }
 
     // Control player's movement
@@ -264,7 +267,7 @@ public class PlayerController : MonoBehaviour
             //Combo Attack
             if (!m_isAttacking && !m_isFalling && !m_isFloating)
             {
-                if (Input.GetButtonDown("Fire1") && !m_anim.GetBool("Attacking1") && m_attackTimeCnt <= m_attackInterval * 0.5f)
+                if (Input.GetButtonDown("Fire1") /*&& !m_anim.GetBool("Attacking")*/ && m_attackTimeCnt <= m_attackInterval * 0.5f)
                 {
                     m_anim.SetBool("Attacking2", true);
                     m_isAttacking = true;
@@ -422,25 +425,25 @@ public class PlayerController : MonoBehaviour
         {
             if (m_groundTag == "Grass")
             {
-                audioSourse.PlayOneShot(m_soundFootstepsGrass, 1.0f);
+                m_audioSourse.PlayOneShot(m_soundFootstepsGrass, 1.0f);
                 m_soundInterval[0] = m_soundFootstepsGrass.length;
             }
             else if (m_groundTag == "Stone")
             {
-                audioSourse.PlayOneShot(m_soundFootstepsStone, 1.0f);
+                m_audioSourse.PlayOneShot(m_soundFootstepsStone, 1.0f);
                 m_soundInterval[0] = m_soundFootstepsStone.length;
             }
         }
         //播放攻击--1
        if ((info.IsName("Attacking1") || info.IsName("AttackUp") || info.IsName("AttackDown")) && m_soundInterval[1] <= 0f)
        {
-                audioSourse.PlayOneShot(m_soundAtk1, 1.0f);
+                m_audioSourse.PlayOneShot(m_soundAtk1, 1.0f);
                 m_soundInterval[1] = m_attackInterval;
         }
         //播放连击--2
         if (info.IsName("Attacking2") && m_soundInterval[2] <= 0f)
         {
-            audioSourse.PlayOneShot(m_soundAtk2, 1.0f);
+            m_audioSourse.PlayOneShot(m_soundAtk2, 1.0f);
             m_soundInterval[2] = m_attackInterval;
         }
     }
@@ -451,7 +454,7 @@ public class PlayerController : MonoBehaviour
         AnimatorStateInfo info = m_anim.GetCurrentAnimatorStateInfo(0);
         if(!info.IsName("Attacking1") && m_anim.GetBool("Attacking"))
         {
-            m_anim.SetBool("Attacking1", false);
+            m_anim.SetBool("Attacking", false);
         }
         if (!info.IsName("Attacking2") && m_anim.GetBool("Attacking2"))
         {
@@ -502,11 +505,12 @@ public class PlayerController : MonoBehaviour
 
     public void HurtIntervalUpdate()
     {
-        if(m_hurtTimeCnt>0)
+        if (m_hurtTimeCnt>0)
         {
             m_hurtTimeCnt -= Time.deltaTime;
         }
     }
+
 
     public void ResetAnim()
     {

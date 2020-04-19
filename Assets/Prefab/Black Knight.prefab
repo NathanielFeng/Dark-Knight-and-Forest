@@ -137,27 +137,8 @@ PolygonCollider2D:
       - {x: -0.085, y: 0.84999996}
       - {x: -0.36499998, y: 0.91999996}
       - {x: -0.42499998, y: 0.91999996}
-      - {x: -0.445, y: 0.87}
-      - {x: -0.36499998, y: 0.83}
-      - {x: -0.39499998, y: 0.76}
-      - {x: -0.315, y: 0.69}
-      - {x: -0.255, y: 0.64}
-      - {x: -0.085, y: 0.58}
-      - {x: 0.105, y: 0.31}
-      - {x: 0.055, y: 0.01}
-      - {x: -0.024999999, y: -0.14}
-      - {x: -0.085, y: -0.24}
-      - {x: -0.345, y: -0.53999996}
-      - {x: -0.60499996, y: -0.71999997}
-      - {x: -0.635, y: -0.75}
-      - {x: -0.635, y: -0.77}
-      - {x: -0.60499996, y: -0.78}
-      - {x: -0.565, y: -0.77}
-      - {x: -0.475, y: -0.74}
-      - {x: -0.435, y: -0.71999997}
-      - {x: -0.45499998, y: -0.72999996}
-      - {x: -0.525, y: -0.79999995}
-      - {x: -0.53499997, y: -0.79999995}
+      - {x: -1.1380613, y: 0.7826592}
+      - {x: -1.0050597, y: -0.26675144}
       - {x: -0.615, y: -0.88}
       - {x: -0.60499996, y: -0.90999997}
       - {x: -0.53499997, y: -0.90999997}
@@ -177,9 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331e704452f773541b37c6875a5a7423, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_attackPower: 10
-  m_anim: {fileID: 0}
-  m_coll: {fileID: 0}
+  m_damage: 10
 --- !u!1 &6933151700196960838
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,6 +329,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   m_slider: {fileID: 0}
+  m_renderer: {fileID: 6933151700196960861}
   m_speed: 5
   m_jumpForce: 18
   m_dashForce: 30
@@ -357,14 +337,13 @@ MonoBehaviour:
   m_floatingWindow: 3
   m_attackInterval: 0.6
   m_health: 100
-  m_hurtInterval: 1.5
+  m_hurtInterval: 2
   m_soundFootstepsGrass: {fileID: 8300000, guid: 6be3557ef127a5c4485d640ff03ed448,
     type: 3}
   m_soundFootstepsStone: {fileID: 8300000, guid: 6cb68b7d8b4f3754c96d33793d8223f6,
     type: 3}
   m_soundAtk1: {fileID: 8300000, guid: e6d5d3ef40a3f364b9f94505aadd23d1, type: 3}
   m_soundAtk2: {fileID: 8300000, guid: 3d21048551d2dd24e8c5cc80d56de4a0, type: 3}
-  m_hurtTimeCnt: 0
 --- !u!82 &6933151700196960863
 AudioSource:
   m_ObjectHideFlags: 0

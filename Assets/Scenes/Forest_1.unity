@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 338486109}
   m_Layer: 12
   m_Name: Chestnut
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -900,7 +900,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5065c98c70989494fad129bafa356335, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 0
+  health: 30
+  hurtInterval: 0.04
   ground:
     serializedVersion: 2
     m_Bits: 256
@@ -1270,6 +1271,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933151700196960861, guid: 57fc7590606bc454f947a77412de59e5,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933151700196960861, guid: 57fc7590606bc454f947a77412de59e5,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933151700196960861, guid: 57fc7590606bc454f947a77412de59e5,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6933151700196960861, guid: 57fc7590606bc454f947a77412de59e5,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57fc7590606bc454f947a77412de59e5, type: 3}
@@ -11662,7 +11683,7 @@ GameObject:
   - component: {fileID: 1473292949}
   m_Layer: 0
   m_Name: PlayerDamageTrigger
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

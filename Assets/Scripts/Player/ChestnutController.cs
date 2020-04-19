@@ -9,8 +9,6 @@ public class ChestnutController : Enemy
     private Rigidbody2D rigid;
     private Animator anim;
     private CircleCollider2D circleCollider;
-    //private GameObject player;
-    //public Slider bloodBar;
     public LayerMask ground;
 
     //public float jumpForce = 8.0f;
@@ -27,6 +25,7 @@ public class ChestnutController : Enemy
     private float faceDirection;
     private float rollingTimeCnt;
     private float nextRollingTimeCnt;
+    private bool transformFinished;
 
     [Header("testForCode")]
     public string hitKey;
@@ -44,10 +43,12 @@ public class ChestnutController : Enemy
         rightButton = new Vector2(rightButtonPoint.transform.position.x, rightButtonPoint.transform.position.y);
         Destroy(rightButtonPoint);
         Destroy(leftTopPoint);
+        transformFinished = false;
     }
 
     void Update()
     {
+        HurtIntervalTimmer();
         Movement();
         Mature();
     }
@@ -55,6 +56,15 @@ public class ChestnutController : Enemy
 
     void Movement()
     {
+        if (isHurt)
+        {
+            return;
+        }
+        if (isDead)
+        {
+            rigid.velocity = new Vector2(0f, 0f);
+            return;
+        }
         //角色获得仇恨
         if (getPlayer)
         {
@@ -90,7 +100,10 @@ public class ChestnutController : Enemy
             rigid.velocity = new Vector2(faceDirection * speed, rigid.velocity.y);
             //变身后跑动
             if (anim.GetBool("isMature"))
+            {
                 anim.SetBool("isRolling", true);
+                UpdateCollider();
+            }
             //变身前跑动
             else
                 anim.SetBool("isBouncing", true);
@@ -100,7 +113,10 @@ public class ChestnutController : Enemy
             rigid.velocity = new Vector2(0, rigid.velocity.y);
             nextRollingTimeCnt -= Time.deltaTime;
             if (anim.GetBool("isMature"))
+            {
                 anim.SetBool("isRolling", false);
+                UpdateCollider();
+            }
             else
                 anim.SetBool("isBouncing", false);
         }
@@ -108,6 +124,10 @@ public class ChestnutController : Enemy
 
     void Mature()
     {
+        if(isDead)
+        {
+            return;
+        }
         //角色获得仇恨
         if (getPlayer)
         {
@@ -116,10 +136,7 @@ public class ChestnutController : Enemy
                 anim.SetBool("isMature", true);
                 speed *= 2;
                 //改变Circle Collider碰撞体的大小
-                circleCollider.offset = new Vector2(0.01f, 1.0f);
-                circleCollider.radius = 1.0f;
-                damageCollider.offset = new Vector2(0.01f, 1.0f);
-                damageCollider.radius = 1.0f;
+                UpdateCollider();
                 //改变重力大小
                 rigid.gravityScale = 3.0f;
             }
@@ -134,5 +151,62 @@ public class ChestnutController : Enemy
             return true;
         }
         return false;
+    }
+
+    //解决成熟后图片和碰撞体不一致的问题
+    void UpdateCollider()
+    {
+        float offX = 0;
+        float offY = 0;
+        float radius = 0;
+        if (anim.GetBool("isMature") && anim.GetBool("isRolling"))
+        {
+            offX = -0.1f;
+            offY = 1.0f;
+            radius = 1.0f;
+        }
+        else if (anim.GetBool("isMature"))
+        {
+            offX = -0.1f;
+            offY = 1.1f;
+            radius = 1.1f;
+        }
+        circleCollider.offset = new Vector2(offX, offY);
+        damageCollider.offset = new Vector2(offX, offY);
+        circleCollider.radius = radius;
+        damageCollider.radius = radius;
+    }
+
+    void TransformDone()
+    {
+        transformFinished = true;
+    }
+
+    override protected void DeadBehavior()
+    {
+        anim.SetBool("isDead", true);
+        Destroy(damageCollider.gameObject);
+    }
+
+    override protected void HurtBehavior()
+    {
+        if(anim.GetBool("isMature") && anim.GetBool("isRolling"))
+        {
+            anim.SetBool("isRolling", false);
+        }
+        else if(!anim.GetBool("isMature") && anim.GetBool("isBouncing"))
+        {
+            anim.SetBool("isBouncing", false);
+        }
+        rollingTimeCnt = 0f;
+        nextRollingTimeCnt = rollingTime;
+        if (playerObject == null)
+        {
+            rigid.velocity = new Vector2(faceDirection * -25f, rigid.velocity.y);
+        }
+        else
+        {
+            rigid.velocity = new Vector2(playerObject.transform.localScale.x * 25f, rigid.velocity.y);
+        }
     }
 }

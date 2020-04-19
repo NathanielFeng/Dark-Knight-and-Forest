@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AttackController : MonoBehaviour
 {
-    public int m_attackPower;
-    public Animator m_anim;
-    public PolygonCollider2D m_coll;
+    public int m_damage;
+    private Animator m_anim;
+    private PolygonCollider2D m_coll;
     private float m_originX;
     private float m_originY;
     private float m_originZ;
@@ -18,6 +18,7 @@ public class AttackController : MonoBehaviour
         m_originX = transform.localPosition.x;
         m_originY = transform.localPosition.y;
         m_originZ = transform.localPosition.z;
+        m_coll.enabled = false;
     }
 
     // Update is called once per frame
@@ -50,6 +51,15 @@ public class AttackController : MonoBehaviour
         transform.localPosition = new Vector3(0, m_originY - 1.5f, m_originZ);
         m_coll.enabled = true;
         m_anim.SetTrigger("ATKDOWN");
+    }
+
+   void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+            Enemy enemy = collision.GetComponent<Enemy>();
+            enemy.Hurt(m_damage);
+        }
     }
 
 }
