@@ -286,6 +286,11 @@ public class PlayerController : MonoBehaviour
         m_atkEffect.AttackUp();
     }
 
+    void CallAttackDone()
+    {
+        m_atkEffect.AttackFinished();
+    }
+
     void CallAttackDownEffect()
     {
         m_atkEffect.AttackDown();
@@ -454,6 +459,7 @@ public class PlayerController : MonoBehaviour
         AnimatorStateInfo info = m_anim.GetCurrentAnimatorStateInfo(0);
         if(!info.IsName("Attacking1") && m_anim.GetBool("Attacking"))
         {
+            m_isAttacking = false;
             m_anim.SetBool("Attacking", false);
         }
         if (!info.IsName("Attacking2") && m_anim.GetBool("Attacking2"))

@@ -57,7 +57,7 @@ public class ChestnutController : Enemy
         }
         if (isDead)
         {
-            rigid.velocity = new Vector2(0f, 0f);
+            rigid.velocity = new Vector2(0f, rigid.velocity.y);
             return;
         }
         //角色获得仇恨
