@@ -44,9 +44,9 @@ GameObject:
   - component: {fileID: 4187424706808927421}
   - component: {fileID: 4187424706808927420}
   - component: {fileID: 4187424706808927423}
-  - component: {fileID: 4187424706808927422}
   - component: {fileID: 4187424706808927393}
-  m_Layer: 0
+  - component: {fileID: 4187424706808927422}
+  m_Layer: 9
   m_Name: Flame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,19 +147,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 17.508663, y: 0.99920654}
   m_EdgeRadius: 0
---- !u!114 &4187424706808927422
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 2785297063393960910, guid: 6937e25f15654f94c8ada2a2f3c5e734,
-    type: 3}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4187424706808927392}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe9614ec100d874f9dac5627710a5e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &4187424706808927393
 Animator:
   serializedVersion: 3
@@ -180,6 +167,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4187424706808927422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 2785297063393960910, guid: 6937e25f15654f94c8ada2a2f3c5e734,
+    type: 3}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4187424706808927392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fe9614ec100d874f9dac5627710a5e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &4187424707805765880
 GameObject:
   m_ObjectHideFlags: 0

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BossController : MonoBehaviour
+public class BossController : Enemy
 {
     [Header("Components")]
     private Rigidbody2D rigid;
@@ -21,9 +21,10 @@ public class BossController : MonoBehaviour
     [Header("Attributes")]
     public float speed;
     private float faceDirection;
-    public float health = 100.0f;
     private float attackTime = 0.2f;
     private float attackTimeCnt;
+    private float phaseTime = 20.0f;
+    private float phaseTimeCnt;
 
     void Awake()
     {
@@ -35,16 +36,31 @@ public class BossController : MonoBehaviour
     void Start()
     {
         Mature();
+        health = 100;
         attackTimeCnt = attackTime;
+        phaseTimeCnt = phaseTime;
     }
 
     void Update()
     {
         bloodBar.value = health;
-        if (health > 50 || health < 25)
-            Attack1();
+        if (health > 0)
+        {
+            if (phaseTimeCnt > 10)
+            {
+                phaseTimeCnt -= Time.deltaTime;
+                Attack1();
+            }
+            else if (phaseTimeCnt > 0)
+            {
+                phaseTimeCnt -= Time.deltaTime;
+                Attack2();
+            }
+            else
+                phaseTimeCnt = phaseTime;
+        }
         else
-            Attack2();
+            anim.SetBool("isDead", true);
     }
 
 
@@ -56,21 +72,22 @@ public class BossController : MonoBehaviour
         if (transform.position.x - player.transform.position.x > 5.0f) 
             faceDirection = -1.0f;
         transform.localScale = new Vector3(faceDirection, 1, 1);
-        rigid.velocity = new Vector2(faceDirection * speed * Time.deltaTime, rigid.velocity.y);
+        rigid.velocity = new Vector2(faceDirection * speed, rigid.velocity.y);
         anim.SetBool("isRolling", true);
     }
 
     void Attack2()
     {
         rigid.gravityScale = 0.0f;
-        transform.position = new Vector2(transform.position.x, player.transform.position.y + 10.0f);
+        transform.position = new Vector2(transform.position.x, player.transform.position.y + 2.5f);
         if (player.transform.position.x - transform.position.x > 5.0f)
             faceDirection = 1.0f;
         if (transform.position.x - player.transform.position.x > 5.0f)
             faceDirection = -1.0f;
         transform.localScale = new Vector3(faceDirection, 1, 1);
 
-        rigid.velocity = new Vector2(faceDirection * speed * Time.deltaTime, 0);
+        rigid.velocity = new Vector2(faceDirection * speed, 0);
+        anim.SetBool("isRolling", true);
 
         //每隔一段时间攻击
         if (attackTimeCnt <= 0)
