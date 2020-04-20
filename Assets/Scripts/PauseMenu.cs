@@ -24,6 +24,16 @@ public class PauseMenu : MonoBehaviour
 
     public void returnMainMenu()
     {
+        GameObject[] music = GameObject.FindGameObjectsWithTag("BGM");
+        GameObject[] bgs = GameObject.FindGameObjectsWithTag("BGS");
+        for (int i = 0; i < music.GetLength(0); i++)
+        {
+            Destroy(music[i]);
+        }
+        for (int i = 0; i < bgs.GetLength(0); i++)
+        {
+            Destroy(bgs[i]);
+        }
         SceneManager.LoadScene(0);
     }
 }

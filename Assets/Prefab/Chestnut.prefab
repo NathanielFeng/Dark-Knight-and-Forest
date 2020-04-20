@@ -229,7 +229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
-  hurtInterval: 0.04
+  hurtInterval: 0.1
+  hitSound: {fileID: 8300000, guid: 645c9704d02f7894b8f1df2563d282e8, type: 3}
+  hitBiasX: 0
+  hitBiasY: 0
   ground:
     serializedVersion: 2
     m_Bits: 256

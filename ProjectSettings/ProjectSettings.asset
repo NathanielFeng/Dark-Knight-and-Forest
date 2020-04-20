@@ -281,7 +281,14 @@ PlayerSettings:
   androidGamepadSupportLevel: 0
   AndroidValidateAppBundleSize: 1
   AndroidAppBundleSizeToValidate: 150
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: db3b4e2e04f14354a8567315e2759183, type: 3}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetPlatformIcons: []
   m_BuildTargetBatching: []
   m_BuildTargetEncrypting: []
@@ -645,10 +652,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 1bca88b8-9287-4bb7-9998-b626f88681a9
+  cloudProjectId: 0fe3a765-aa1a-4c4b-bdfd-91186f9e105e
   framebufferDepthMemorylessMode: 0
   projectName: 2D Game
-  organizationId: jinshan_feng
+  organizationId: meatballhk
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

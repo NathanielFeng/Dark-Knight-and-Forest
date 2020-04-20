@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
@@ -17,7 +17,8 @@ public class PlayerController : MonoBehaviour
     private AttackController m_atkEffect;
     private AudioSource m_audioSourse;
     public SpriteRenderer m_renderer;
-
+    public Cinemachine.CinemachineCollisionImpulseSource impulse;
+    
 
     //Player param
     public float m_speed;
@@ -28,6 +29,8 @@ public class PlayerController : MonoBehaviour
     public float m_attackInterval;
     public int m_health;
     public float m_hurtInterval;
+    public int m_healValue;
+    public float m_dashTime;
 
     [Space]
     //Sound
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
     private bool m_isFalling;
     private bool m_isAttacking;
     private bool m_isDashing;
+    private bool m_isHealing;
     private float m_velocityRecY;
     private float m_velocityRecX;
     private float m_posRecY;
@@ -55,6 +59,7 @@ public class PlayerController : MonoBehaviour
     private string m_groundTag;
     private float m_hurtTimeCnt;
     private bool m_isInjured;
+    private int m_maxHealth;
     private float[] m_soundInterval = new float[10];
 
 
@@ -67,6 +72,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Heal();
         AnimationCheck();
         Movement();
         Jump();
@@ -76,9 +82,7 @@ public class PlayerController : MonoBehaviour
         AudioControl();
         HurtIntervalUpdate();
         //更新生命值
-        m_slider.value = m_health;
-        if (m_health == 0)
-            Invoke("returnToMainMenu", 2.0f);
+        HealthCheck();
     }
 
 
@@ -94,6 +98,7 @@ public class PlayerController : MonoBehaviour
         m_attackTimeCnt = 0f;
         m_hurtTimeCnt = 0f;
         m_gravityRec = m_rb.gravityScale;
+        m_maxHealth = m_health;
         m_nextJump = true;
         m_nextDash = true;
         for (int i = 0; i < m_soundInterval.Length; i++) 
@@ -108,7 +113,7 @@ public class PlayerController : MonoBehaviour
     void Movement()
     {
         //受伤期间禁止移动
-        if(InjureCheck())
+        if(LockOperation())
         {
             return;
         }
@@ -148,7 +153,7 @@ public class PlayerController : MonoBehaviour
     void Jump()
     {
         //受伤期间禁止跳跃
-        if (InjureCheck())
+        if (LockOperation())
         {
             return;
         }
@@ -223,7 +228,7 @@ public class PlayerController : MonoBehaviour
     void Attack()
     {
         //受伤期间禁止攻击
-        if (InjureCheck())
+        if (LockOperation())
         {
             return;
         }
@@ -326,14 +331,14 @@ public class PlayerController : MonoBehaviour
     void Dash()
     {
         //受伤禁止冲刺
-        if (InjureCheck())
+        if (LockOperation())
         {
             return;
         }
 
         if (Input.GetButtonDown("Dash") && m_nextDash && m_dashTimeCnt <= 0 && !m_isAttacking)
         {
-            m_dashTimeCnt = 1.0f;
+            m_dashTimeCnt = m_dashTime;
             m_nextDash = false;
             int directionSymbol = 0;
             float direction = transform.localScale.x;
@@ -488,6 +493,7 @@ public class PlayerController : MonoBehaviour
         if (m_health > 0 && m_hurtTimeCnt <= 0)
         {
             //重置所有动画参数
+            impulse.GenerateImpulse();
             m_isInjured = true;
             ResetAnim();
             m_health -= damage;
@@ -518,6 +524,50 @@ public class PlayerController : MonoBehaviour
         {
             m_hurtTimeCnt -= Time.deltaTime;
         }
+    } 
+
+    public void Heal()
+    {
+        if(Input.GetButtonUp("Heal") && IsIdle())
+        {
+            m_anim.SetTrigger("Healing");
+            m_isHealing = true;
+        }
+    }
+
+    public bool IsIdle()
+    {
+        if(!m_isAttacking && !m_isDashing && !m_isFalling && !m_isJumping && !m_isFalling && !m_isInjured && !m_isHealing)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void HealingDone()
+    {
+        m_isHealing = false;
+    }
+
+    public void AddHealth()
+    {
+        if (m_health + m_healValue < m_maxHealth)
+            m_health += m_healValue;
+        else
+            m_health = m_maxHealth;
+    }
+
+    public bool LockOperation()
+    {
+        if (InjureCheck())
+        {
+            return true;
+        }
+        if (m_isHealing)
+        {
+            return true;
+        }
+        return false;
     }
 
 
@@ -541,6 +591,7 @@ public class PlayerController : MonoBehaviour
         m_isFalling = false;
         m_isFloating = false;
         m_isJumping = false;
+        m_isHealing = false;
     }
 
     public void InjureFinish()
@@ -556,6 +607,13 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    void HealthCheck()
+    {
+        m_slider.value = m_health;
+        if (m_health <= 0)
+            Invoke("returnToMainMenu", 0f);
+    }
+       
     void returnToMainMenu()
     {
         SceneManager.LoadScene(0);

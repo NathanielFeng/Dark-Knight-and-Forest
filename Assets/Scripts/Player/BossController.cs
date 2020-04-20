@@ -92,7 +92,7 @@ public class BossController : Enemy
                 else
                     Attack3();
             }
-            else if (phaseTimeCnt <= 0 && nextMoveTimeCnt < 0)
+            else if (phaseTimeCnt <= 0 && nextMoveTimeCnt < 0 && attackTimeCnt<0)
             {
                 Attack2();
             }
@@ -124,6 +124,7 @@ public class BossController : Enemy
             rigid.velocity = new Vector2(faceDirection * speed, 13f);
             anim.SetBool("isMoving", true);
             nextMoveTimeCnt = nextMoveTime;
+            attackTimeCnt = attackTime;
             phaseTimeCnt -= 1;
         }
     }
@@ -164,6 +165,7 @@ public class BossController : Enemy
             rigid.velocity = new Vector2(faceDirection * speed * 1.5f, 0f);
             anim.SetBool("isDashing", true);
             nextMoveTimeCnt = nextMoveTime;
+            attackTimeCnt = attackTime;
             phaseTimeCnt -= 1;
         }
     }
@@ -201,11 +203,11 @@ public class BossController : Enemy
         }
         else
         {
-            float axis = -10f;
+            float axis = -30f;
             for (int i = 0; i < 3; i++)
             {
                 Instantiate(flame, shotPoint.position, Quaternion.Euler(0f, 0f, rotZ + axis));
-                axis += 10f;
+                axis += 30f;
             }
         }
     }
@@ -216,7 +218,10 @@ public class BossController : Enemy
         anim.SetBool("isDashing", false);
         anim.SetBool("isMoving", false);
         anim.SetTrigger("isInjured");
-        //rigid.velocity = new Vector2(player.transform.localScale.x * 5f, rigid.velocity.y + 1f);
+        if(player.transform .position.y - transform.position.y < -1f)
+            rigid.velocity = new Vector2(0, /*-1f * rigid.velocity.y +*/ 13f);
+        else
+            rigid.velocity = new Vector2(player.transform.localScale.x * 15f, 0f);
     }
 
     override protected void DeadBehavior()

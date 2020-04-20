@@ -134,6 +134,8 @@ public class ChestnutController : Enemy
                 UpdateCollider();
                 //改变重力大小
                 rigid.gravityScale = 3.0f;
+                //命中点改变
+                hitBiasY += 1.0f;
             }
         }
     }

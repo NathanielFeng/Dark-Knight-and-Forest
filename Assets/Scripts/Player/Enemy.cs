@@ -13,6 +13,9 @@ public class Enemy : MonoBehaviour
     protected bool isHurt = false;
     protected bool isDead = false;
 
+    public AudioClip hitSound;
+    public float hitBiasX,hitBiasY;
+
     //角色进入仇恨区域
     public void PlayerInTrigger(GameObject player)
     {
@@ -42,6 +45,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public AudioClip getHitSound()
+    {
+        return hitSound;
+    }
+
     public void Death()
     {
         if (health <= 0)
@@ -66,5 +74,10 @@ public class Enemy : MonoBehaviour
     protected virtual void DeadBehavior()
     {
 
+    }
+
+    public Vector2 HitPosition()
+    {
+        return new Vector2(transform.position.x + hitBiasX, transform.position.y + hitBiasY);
     }
 }

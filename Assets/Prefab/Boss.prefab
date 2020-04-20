@@ -166,14 +166,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 200
-  hurtInterval: 0.04
+  hurtInterval: 0.1
+  hitSound: {fileID: 8300000, guid: e44307ae6ebd8d14ba530eefc5628fa1, type: 3}
+  hitBiasX: 0
+  hitBiasY: 0
   damageTrigger: {fileID: 6463472133446132120}
   player: {fileID: 0}
   flame: {fileID: 8227410808865599242, guid: 5a31ac722d2fec548bcfb70705560d7d, type: 3}
   shotPoint: {fileID: 6463472135137236971}
   bloodBar: {fileID: 0}
   speed: 6
-  attackTime: 2.5
+  attackTime: 3
   phaseTime: 4
   nextMoveTime: 1
 --- !u!1 &6463472133446132120

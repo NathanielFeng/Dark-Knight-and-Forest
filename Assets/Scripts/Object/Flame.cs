@@ -7,7 +7,7 @@ public class Flame : MonoBehaviour
     public GameObject detroyEffect;
     private float distance = 0.01f;
     private float lifeTime = 3.0f;
-    private float speed = 25.0f;
+    private float speed = 16.0f;
 
     void Start()
     {

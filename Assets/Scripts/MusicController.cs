@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MusicController: MonoBehaviour
 {
-    public Rigidbody playerRB;
+    public Rigidbody2D playerRB;
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRB = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame

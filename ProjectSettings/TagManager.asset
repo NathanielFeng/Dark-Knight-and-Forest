@@ -9,6 +9,8 @@ TagManager:
   - Grass
   - Stone
   - Enemy
+  - BGM
+  - BGS
   layers:
   - Default
   - TransparentFX
@@ -51,6 +53,9 @@ TagManager:
     locked: 0
   - name: background1
     uniqueID: 4219110939
+    locked: 0
+  - name: Light
+    uniqueID: 3432305771
     locked: 0
   - name: ground
     uniqueID: 1991002089
