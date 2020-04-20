@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Animations;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -76,6 +77,8 @@ public class PlayerController : MonoBehaviour
         HurtIntervalUpdate();
         //更新生命值
         m_slider.value = m_health;
+        if (m_health == 0)
+            Invoke("returnToMainMenu", 2.0f);
     }
 
 
@@ -553,4 +556,8 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
+    void returnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 }

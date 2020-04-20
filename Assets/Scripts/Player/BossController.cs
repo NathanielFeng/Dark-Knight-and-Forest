@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BossController : Enemy
 {
@@ -56,7 +57,7 @@ public class BossController : Enemy
 
     void StateCheck()
     {
-        //bloodBar.value = health;
+        bloodBar.value = health;
         //受伤状态不攻击
         if (isHurt)
         {
@@ -65,6 +66,7 @@ public class BossController : Enemy
         if(isDead)
         {
             rigid.velocity = new Vector2(0f, rigid.velocity.y);
+            Invoke("returnToMainMenu", 2.0f);
             return;
         }
 
@@ -224,5 +226,10 @@ public class BossController : Enemy
         anim.SetBool("isMoving", false);
         anim.SetBool("isDead", true);
         Destroy(damageTrigger);
+    }
+
+    void returnToMainMenu()
+    {
+        SceneManager.LoadScene(0);
     }
 }

@@ -175,6 +175,9 @@ MonoBehaviour:
   player: {fileID: 0}
   tooth: {fileID: 5999032281888077098, guid: 44a4c8f97233d8248a2b3bd5643dc1af, type: 3}
   shotPoint: {fileID: 7865562502943184367}
+  ground:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &7865562502943184360
 GameObject:
   m_ObjectHideFlags: 0

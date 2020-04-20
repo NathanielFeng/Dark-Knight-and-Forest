@@ -34,8 +34,8 @@ public class BatController : Enemy
         else
         {
             anim.SetBool("isDead", true);
-            if(transform.position.y > -3.5)
-                transform.position += Vector3.down * fallingSpeed * Time.deltaTime;
+            transform.position += Vector3.down * fallingSpeed * Time.deltaTime;
+            Invoke("destroyBat", 3.0f);
         }
 
     }
@@ -64,5 +64,10 @@ public class BatController : Enemy
         {
             anim.SetBool("isAttacking", false);
         }
+    }
+
+    void destroyBat()
+    {
+        Destroy(gameObject);
     }
 }
