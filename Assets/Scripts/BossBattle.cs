@@ -7,6 +7,7 @@ public class BossBattle : MonoBehaviour
     public GameObject boss;
     public GameObject BGM;
     public AudioSource BossBGM;
+    public GameObject BloodBar;
 
     private float bgmExitTime = 2.0f;
     private float bgmExit = 0f;
@@ -37,6 +38,7 @@ public class BossBattle : MonoBehaviour
             exitBgmflag = true;
             triggerOn = true;
             BossBGM.Play();
+            BloodBar.SetActive(true);
         }
     }
 

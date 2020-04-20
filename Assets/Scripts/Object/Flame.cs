@@ -32,7 +32,7 @@ public class Flame : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<PlayerController>().m_health -= 10;
+            collision.gameObject.GetComponent<PlayerController>().Hurt(10);
             destroyFlame();
         }
     }
