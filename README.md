@@ -1,13 +1,12 @@
 # Dark-Knight-and-Forest
 
-本游戏由我与 @bianbianzhang 共同开发完成，感谢 bianbianzhang 好兄弟的鼎力相助。
+本游戏由我与 [@MeatBall](https://github.com/banbianzhang) 共同开发完成，感谢 MeatBall 好兄弟的鼎力相助。
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img1.png"/>
+<p align="center"><img src="Images/img1.png"/></p>
 
-**Dark Knight and Forest（黑暗骑士与森林）**是一款 2D 横版角色扮演游戏，采用 Unity 游戏引擎、为期半个月开发而成。游戏中，玩家会扮演 Dark Knight（黑暗骑士）探索森林，玩家需要灵活利用已有技能，打败敌人、穿越障碍，历经三个关卡才能到达终点。
+**Dark Knight and Forest（黑暗骑士与森林）** 是一款 2D 横版角色扮演游戏，采用 Unity 游戏引擎、为期半个月开发而成。游戏中，玩家会扮演 Dark Knight（黑暗骑士）探索森林，玩家需要灵活利用已有技能，打败敌人、穿越障碍，历经三个关卡才能到达终点。
 
 游戏灵感来源：《空洞骑士》、《黑暗之魂》、《奥日与黑暗森林》
-
 
 
 ## 1. 游戏开发过程
@@ -41,7 +40,6 @@
 （11）最终测试
 
 
-
 ## 2. 开发软件
 
 PC端：
@@ -61,13 +59,11 @@ IOS端：
 ​	Procreate（图像绘制）
 
 
-
 ## 3. 任务分工
 
-@bianbianzhang：角色/BOSS 绘制、角色动画设计、角色控制代码、敌人AI优化、战斗系统制作、地图绘制与设计、音效和音乐制作、Bug 测试与修复
+MeatBall：角色/BOSS 绘制、角色动画设计、角色控制代码、敌人AI优化、战斗系统制作、地图绘制与设计、音效和音乐制作、Bug 测试与修复
 
-@NathanielFeng：敌人绘制、敌人动画设计、敌人AI代码、粒子系统构建、主菜单与暂停菜单制作、游戏场景管理、游戏内UI制作、Bug 测试与修复
-
+NathanielFeng：敌人绘制、敌人动画设计、敌人AI代码、粒子系统构建、主菜单与暂停菜单制作、游戏场景管理、游戏内UI制作、Bug 测试与修复
 
 
 ## 4. 游戏开发过程
@@ -76,11 +72,11 @@ IOS端：
 
 在收集游戏素材的过程中，发现网上的素材并不能适用于我们的游戏类型，即使有也是好几款画风不同的素材，于是我们决定自己绘制。
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img2.gif" style="zoom:50%;" />
+<p align="center"><img src="Images/img2.gif" width=400 /></p>
 
 Unity自带的动画状态机可以方便地帮我们轻松控制动画的转换，但是由于对其了解不多，开发过程中大多数角色控制Bug的产生都与动画状态机有关。
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img3.png"/>
+<p align="center"><img src="/Images/img3.png"/></p>
 
 ### 4.2 脚本编程
 
@@ -90,7 +86,7 @@ Unity中的每一个脚本的创建都会生成一个类，这个类的所有公
 
 不同物体之间的脚本（即不同类）可以轻易的相互调用，想要找到当前场景中的某一个对象，只需要使用 Unity 提供的函数即可（例如 FindGameObjectWithTag ）。或者直接将需要控制的物体直接 Unity 界面中拖入脚本对应位置，即可让该物体的 GameObject 对象在其他对象中的脚本中作为一个成员变量存在。
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img4.png"/>
+<p align="center"><img src="Images/img4.png"/></p>
 
 ### 4.3 碰撞体相关
 
@@ -100,13 +96,13 @@ Unity 中的刚体（Rigid Body）组件可以直接为物件添加物理效果�
 
 在对角色是否站立在地面上的检测中，我们使用了射线类（RaycastHit2D）进行检测，射线可以返回它接触到的物体信息，通过它可以判断角色脚下踩着的是什么物件。
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img5.png"/>
+<p align="center"><img src="Images/img5.png"/></p>
 
 ### 4.4 地图
 
 地图先是使用了 Unity 中的 TileMap 绘制基本框架，然后以一格100x100像素的标准在 Photoshop 中进行完全绘制。为了节省地图绘制的时间，我们采用先绘制基本元素，再用基本元素堆砌的方式来进行这一步工作。
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img6.png"/>
+<p align="center"><img src="Images/img6.png"/></p>
 
 ### 4.5 UI和音效
 
@@ -114,8 +110,7 @@ Unity 的对象提供基本的 UI 元素。UI 以 Canvas 对象为基础，可�
 
 音乐和音效通过 Audition 进行简单的剪辑和音量调整。背景音乐来自《空洞骑士》，音效则是来自 Adobe 提供的音效库。由于《空洞骑士》发布的原声大碟为完整音乐，所以直接用在游戏中会出现衔接不连贯的问题，靠剪辑和调整难以解决。
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img7.png"/>
-
+<p align="center"><img src="Images/img7.png"/></p>
 
 
 ## 5. 游戏测试与总结
@@ -147,13 +142,12 @@ Unity 的对象提供基本的 UI 元素。UI 以 Canvas 对象为基础，可�
 （6）打击感仍有进步的空间（增加镜头摇晃，怪物出血效果，强化怪物受伤反馈）
 
 
-
 ## 6. 游戏运行截图
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img8.png"/>
+<p align="center"><img src="Images/img8.png"/></p>
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img9.png"/>
+<p align="center"><img src="Images/img9.png"/></p>
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img10.png"/>
+<p align="center"><img src="Images/img10.png"/></p>
 
-<img src="https://github.com/NathanielFeng/Dark-Knight-and-Forest/Images/img11.png"/>
+<p align="center"><img src="Images/img11.png"/></p>
